@@ -16,15 +16,13 @@
   <body>
     <h1>Robot Math - speech to numbers - EN</h1>
 
-    <form action="">
-      <label for="formula">formula:</label>
-      <input type="text" id="formula" name="formula"><br><br>
-      <input type="submit" value="Submit">
-    </form>
+    <input id="xToRobot" type="text" value="x" onblur="calculate()"  />
+    <input id="formRobot" type="text" value="formRobot" />
+    <input id="yFromRobot" type="text" value="y" name="yFromRobotAnswer" />
 
     <p class="hints"></p>
     <div>
-        <p class="output"><em>...diagnostic messages</em></p>
+        <p class="output"><em>... diagnostic messages</em></p>
     </div>
 
     <script src="script.js"></script>

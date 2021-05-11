@@ -49,6 +49,13 @@ recognition.onresult = function(event) {
 //  var calculation = document.getElementById("fname");
 //  calculation.value = x.value.toUpperCase();
 //}
+var xToRobot = document.getElementById("xToRobot");
+var formRobot = document.getElementById("formRobot");
+// Calculate total to two decimal places
+let yFromRobot = xToRobot + (xToRobot * formRobot);
+yFromRobot.toFixed(2); // two decimal places
+
+console.log("Total:", yFromRobot);
 
 recognition.onspeechend = function() {
   recognition.stop();
