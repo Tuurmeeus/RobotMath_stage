@@ -45,7 +45,6 @@ recognition.onresult = function(event) {
   console.log('Confidence: ' + event.results[0][0].confidence);
 }
 
-// calculate the input 
 calculate = function()
 {
     var xToRobot = document.getElementById('xToRobot').value;

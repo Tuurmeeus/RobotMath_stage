@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <script type="text/javascript">
+        
+        var Calculator = function(inp1,inp2,reslt) {
+        this.valinp1 = inp1;
+        this.valinp2 = inp2;
+        this.result  = reslt;
+        if (!Calculator.prototype.sum) {
+          Calculator.prototype.sum = function() {
+              var value1 = Number(this.valinp1.value),
+                  value2 = Number(this.valinp2.value);
+
+               this.result.innerHTML =
+                (!/[0-9]/.test(String(value1)) || !/[0-9]/.test(String(value1)))
+                 ? 'we only eat digits!'
+                 : (value1 + value2);
+           };
+           Calculator.prototype.multiply = function() {
+              var value1 = Number(this.valinp1.value);
+              var value2 = Number(this.valinp2.value);
+              this.result.innerHTML =
+               (!/[0-9]/.test(String(value1)) || !/[0-9]/.test(String(value1)))
+               ? 'we only eat digits!'
+               : (value1 * value2);
+           };
+           Calculator.prototype.div = function() {
+              var value1 = Number(this.valinp1.value);
+              var value2 = Number(this.valinp2.value);
+              var restmp = value1/value2;
+              this.result.innerHTML =
+               (!/[0-9]/.test(String(value1)) || !/[0-9]/.test(String(value1)) || value2 === 0)
+               ? 'we only eat digits and second value can\'t be zero!'
+               : restmp%1 ? restmp.toFixed(3) : restmp;
+           };
+           Calculator.prototype.mod = function() {
+              var value1 = Number(this.valinp1.value);
+              var value2 = Number(this.valinp2.value);
+              var restmp = value1%value2;
+              this.result.innerHTML =
+               (!/[0-9]/.test(String(value1)) || !/[0-9]/.test(String(value1)) || value2 === 0)
+               ? 'we only eat digits and second value can\'t be zero!'
+               : value1%value2;
+           };
+        }
+    },
+    calculator =
+        new Calculator (
+            document.getElementById('v1'),
+            document.getElementById('v2'),
+            document.getElementById('result')
+        );
+
+        </script>
+    </head>
+    <body>
+
+      <input id="v1" type="text" style="width:5em;"/>
+      <button onclick="calculator.sum();"> + </button>
+      <button onclick="calculator.multiply();"> * </button>
+      <button onclick="calculator.div();"> / </button>
+      <button onclick="calculator.mod();"> % </button>
+      <input id="v2" type="text" style="width:5em;"/>
+      <span id="result"> </span>
+
+    </body>
+</html>
