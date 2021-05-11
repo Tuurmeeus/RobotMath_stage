@@ -11,6 +11,9 @@ body {
   overflow: hidden;
   max-width: 800px;
   margin: 0 auto;
+
+  background-color: rgba(0,0,0,1);
+  color: rgba(240,240,240,1);
 }
 
 h1, p {

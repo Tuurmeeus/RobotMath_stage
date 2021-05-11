@@ -23,7 +23,7 @@ numbers.forEach(function(v, i, a){
   console.log(v, i);
   colorHTML += '<span style="background-color:' + v + ';"> ' + v + ' </span>';
 });
-hints.innerHTML = 'Tap/click then say a number to change the number.' + colorHTML + '.';
+hints.innerHTML = 'Tap/click then say a number' + colorHTML + '.';
 
 document.body.onclick = function() {
   recognition.start();
