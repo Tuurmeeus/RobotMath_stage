@@ -23,11 +23,11 @@ numbers.forEach(function(v, i, a){
   console.log(v, i);
   colorHTML += '<span style="background-color:' + v + ';"> ' + v + ' </span>';
 });
-hints.innerHTML = 'Tap/click then say a number to change the number. Try ' + colorHTML + '.';
+hints.innerHTML = 'Tap/click then say a number to change the number.' + colorHTML + '.';
 
 document.body.onclick = function() {
   recognition.start();
-  console.log('Ready to receive a color command.');
+  console.log('Ready to receive a number.');
 }
 
 recognition.onresult = function(event) {
