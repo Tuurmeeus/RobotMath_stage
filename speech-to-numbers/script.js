@@ -23,7 +23,7 @@ numbers.forEach(function(v, i, a){
   console.log(v, i);
   colorHTML += '<span style="background-color:' + v + ';"> ' + v + ' </span>';
 });
-hints.innerHTML = 'Tap/click then say a number' + colorHTML + '.';
+hints.innerHTML = 'Tap/click then say a number' + colorHTML + '';
 
 document.body.onclick = function() {
   recognition.start();
@@ -47,6 +47,7 @@ recognition.onresult = function(event) {
 
 recognition.onspeechend = function() {
   recognition.stop();
+  diagnostic.textContent = 'I recognise that number as' + number + '.';
 }
 
 recognition.onnomatch = function(event) {
