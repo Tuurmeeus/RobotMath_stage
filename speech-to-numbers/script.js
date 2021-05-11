@@ -40,14 +40,13 @@ recognition.onresult = function(event) {
   // The second [0] returns the SpeechRecognitionAlternative at position 0.
   // We then return the transcript property of the SpeechRecognitionAlternative object
   var number = event.results[0][0].transcript;
-  diagnostic.textContent = 'Result received: ' + number + '.';
+  diagnostic.textContent = 'I recognise that number as: ' + number + '.';
   bg.style.backgroundColor = number;
   console.log('Confidence: ' + event.results[0][0].confidence);
 }
 
 recognition.onspeechend = function() {
   recognition.stop();
-  diagnostic.textContent = 'I recognise that number as' + number + '.';
 }
 
 recognition.onnomatch = function(event) {
