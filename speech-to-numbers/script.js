@@ -45,6 +45,11 @@ recognition.onresult = function(event) {
   console.log('Confidence: ' + event.results[0][0].confidence);
 }
 
+// function myFunction() {
+//  var calculation = document.getElementById("fname");
+//  calculation.value = x.value.toUpperCase();
+//}
+
 recognition.onspeechend = function() {
   recognition.stop();
 }
