@@ -27,7 +27,7 @@ hints.innerHTML = 'Tap/click then say a number' + colorHTML + '';
 
 document.body.onclick = function() {
   recognition.start();
-  console.log('Ready to receive a number.');
+  console.log('Ready to receive a number command.');
 }
 
 recognition.onresult = function(event) {
@@ -43,13 +43,6 @@ recognition.onresult = function(event) {
   diagnostic.textContent = 'I recognise that number as: ' + number + '.';
   bg.style.backgroundColor = number;
   console.log('Confidence: ' + event.results[0][0].confidence);
-}
-
-calculate = function()
-{
-    var xToRobot = document.getElementById('xToRobot').value;
-    var formRobot = document.getElementById('formRobot').value;
-    document.getElementById('yFromRobot').value = parseInt(xToRobot)*parseInt(formRobot);
 }
 
 recognition.onspeechend = function() {

@@ -1,19 +1,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title></title>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+
+  <title>Robot Math - speech to numbers - EN</title>
+
         <script type="text/javascript">
 
         function calculate() {
             try {
-                var valueXstudent = parseInt(validate(document.getElementById("valueXstudent").value.trim()));
-                var valueZteacher = parseInt(validate(document.getElementById("valueZteacher").value.trim()));
+                var valueXstudent = parseFloat(validate(document.getElementById("valueXstudent").value.trim()));
+                var valueZteacher = parseFloat(validate(document.getElementById("valueZteacher").value.trim()));
                 var operatorTeacher = document.getElementById('operatorTeacher').value;
                 var resultYrobot = operate(valueXstudent, valueZteacher, operatorTeacher);
-                document.getElementById("resultYrobot").value = resultYrobot;
-                document.getElementById("resultYrobotBig").innerHTML = resultYrobot;
-                document.getElementById("valueXstudentBig").innerHTML = valueXstudent;
+                document.getElementById("resultYrobot").value = resultYrobot.toFixed(2);
+                document.getElementById("resultYrobotBig").innerHTML = resultYrobot.toFixed(2);
+                document.getElementById("valueXstudentBig").innerHTML = valueXstudent.toFixed(2);
 
             } catch (err) {
                 alert("There was a problem: " + err.messaqge);
@@ -43,7 +48,11 @@
         }
 
         </script>
+
         <style>
+        body {
+          /* background-color: rgb(30, 30, 30); */
+        }
 #math-robot {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -58,7 +67,10 @@ h2 {
   border: 1px solid #ddd;
   padding: 8px;
 }
-
+#math-robot img {
+width: 80%;
+height: auto;
+}
 #math-robot tr:nth-child(even){
   background-color: #f2f2f2;
 }
@@ -71,21 +83,37 @@ h2 {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: coral;
+  background-color: rgb(171,141,63);
   color: white;
 }
 #resultYrobotBig, #valueXstudentBig {
   font-size: 4em;
 }
 input, select {
-width: 90%;
+width: 100%;
+height: 20px;
+}
+#buttonSubmit, #buttonReset {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  height: 40px;
+  font-weight: bold;
+}
+#buttonSubmit {
+  background-color: rgb(100,180,100);
+  color: rgb(240,240,240);
+}
+#buttonReset {
+  background-color: rgb(180,100,100);
+  color: rgb(240,240,240);
 }
 </style>
 
     </head>
     <body>
 
-      <h2>Math Robot</h2>
+      <h2>Robot Math <small> - speech to numbers - (EN)</small></h2>
+      <p class="hints">hints</p>
 
     <table id="math-robot" border="1">
         <tr>
@@ -118,18 +146,22 @@ width: 90%;
         </tr>
         <tr>
           <td id="valueXstudentBig">
+            <p class="output"><em>X</em></p>
             </td>
 
             <td colspan="2">
-              <img src="img/C-3PO.jpg" width="400px" height="auto">
+              <img src="img/C-3PO.jpg">
             </td>
 
             <td id="resultYrobotBig">
+              Y
             </td>
         </tr>
     </table>
-    <input type="submit" id="btn_sub" name="btn_sub" value="Submit" onclick="setTimeout(calculate(), 3000);" />
-    <input type="reset" id="btn_res" name="btn_res" value="Reset" />
-TEST 01
+    <input type="submit" id="buttonSubmit" name="buttonSubmit" value="Submit" onclick="setTimeout(calculate(), 3000);" />
+    <input type="reset" id="buttonReset" name="buttonReset" value="Reset" />
+
+    <script src="speech_to_numbers.js"></script>
+
     </body>
 </html>
