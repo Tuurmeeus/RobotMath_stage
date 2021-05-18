@@ -7,26 +7,28 @@
 
         function calculate() {
             try {
-                var value1 = parseInt(validate(document.getElementById("value1").value.trim()));
-                var value2 = parseInt(validate(document.getElementById("value2").value.trim()));
+                var valueXstudent = parseInt(validate(document.getElementById("valueXstudent").value.trim()));
+                var valueZrobot = parseInt(validate(document.getElementById("valueZrobot").value.trim()));
                 var operator = document.getElementById('operator').value;
-                document.getElementById("result").value = operate(value1, value2, operator);
+                var resultYrobot = operate(valueXstudent, valueZrobot, operator);
+                document.getElementById("resultYrobot").value = resultYrobot;
+                document.getElementById("resultYrobotBig").innerHTML = resultYrobot;
+                document.getElementById("valueXstudentBig").innerHTML = valueXstudent;
 
             } catch (err) {
                 alert("There was a problem: " + err.messaqge);
             }
         }
 
-
-        function operate(value1, value2, operator) {
+        function operate(valueXstudent, valueZrobot, operator) {
             if (operator == 'addition') {
-                return value1 + value2;
+                return valueXstudent + valueZrobot;
             } else if (operator == 'subtraction') {
-                return value1 - value2;
+                return valueXstudent - valueZrobot;
             } else if (operator == 'division') {
-                return value1 / value2;
+                return valueXstudent / valueZrobot;
             } else if (operator == 'multiplication') {
-                return value1 * value2;
+                return valueXstudent * valueZrobot;
             }
         }
 
@@ -41,26 +43,56 @@
         }
 
         </script>
+        <style>
+#math-robot {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#math-robot td, #math-robot th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#math-robot tr:nth-child(even){background-color: #f2f2f2;}
+
+#math-robot tr:hover {background-color: #ddd;}
+
+#math-robot th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: coral;
+  color: white;
+}
+#resultYrobotBig, #valueXstudentBig {
+  font-size: 4em;
+}
+input, select {
+width: 90%;
+}
+</style>
+
     </head>
     <body>
 
       <h2>Math Robot</h2>
 
-    <table border="1">
+    <table id="math-robot" border="1">
         <tr>
-            <td>Value 1:</td>
-            <td>
-                <input type="text" id="value1" name="value1" onclick="setTimeout(calculate(), 3000);" />
-            </td>
+            <th>X (students):</th>
+
+            <th>Operator (teacher):</th>
+
+            <th>Robot (teacher):</th>
+
+            <th>Y (robot):</th>
         </tr>
         <tr>
-            <td>Value 2:</td>
             <td>
-                <input type="text" id="value2" name="value2" />
+                <input type="text" id="valueXstudent" name="valueXstudent" onclick="setTimeout(calculate(), 3000);" />
             </td>
-        </tr>
-        <tr>
-            <td>Operator:</td>
             <td>
                 <select id="operator">
                     <option value="addition">+</option>
@@ -69,11 +101,22 @@
                     <option value="division">/</option>
                 </select>
             </td>
+            <td>
+                <input type="text" id="valueZrobot" name="valueZrobot" />
+            </td>
+            <td>
+                <input type="text" id="resultYrobot" name="resultYrobot" />
+            </td>
         </tr>
         <tr>
-            <td>Result:</td>
-            <td>
-                <input type="text" id="result" name="result" />
+          <td id="valueXstudentBig">
+            </td>
+
+            <td colspan="2">
+              <img src="img/C-3PO.jpg" width="400px" height="auto">
+            </td>
+
+            <td id="resultYrobotBig">
             </td>
         </tr>
     </table>
