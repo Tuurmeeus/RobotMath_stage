@@ -53,8 +53,9 @@ recognition.onresult = function(event) {
   var valueZteacher1 = parseFloat(validate(document.getElementById("valueZteacher1").value.trim()));
   var valueZteacher2 = parseFloat(validate(document.getElementById("valueZteacher2").value.trim()));
   var resultYrobot = operate(valueXstudent, valueZteacher1, operatorZteacher1);
-  // document.getElementById("resultYrobotBig").innerHTML = resultYrobot;
-  document.getElementById("resultYrobotBig").innerHTML = resultYrobot.toFixed(2);
+  var resultYrobotRounded = (Math.round( resultYrobot * 100 ) / 100).toFixed(2);
+  document.getElementById("resultYrobotBig").innerHTML = resultYrobotRounded;
+  // document.getElementById("resultYrobotBig").innerHTML = resultYrobot.toFixed(2);
   // document.getElementById("text-input").innerHTML = resultYrobot.toFixed(2);
 }
 
