@@ -2,7 +2,7 @@ const synth = window.speechSynthesis;
 
 // DOM Elements
 const textForm = document.querySelector('form');
-const textInput = document.querySelector('#textInput');
+const textInput = document.querySelector('#IDtextInput');
 const voiceSelect = document.querySelector('#voice-select');
 const rate = document.querySelector('#rate');
 const rateValue = document.querySelector('#rate-value');
