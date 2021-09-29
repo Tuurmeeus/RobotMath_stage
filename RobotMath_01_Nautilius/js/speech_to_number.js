@@ -48,7 +48,7 @@ recognition.onresult = function(event) {
   console.log('Confidence: ' + event.results[0][0].confidence);
 
   // ++++++++++++++++++++++++++++++ Math ++++++++++++++++++++++++++++++++++ //
-  document.getElementById("valueXstudentBig").innerHTML = valueXstudent;
+  document.getElementById("IDvalueXstudentBig").innerHTML = valueXstudent;
   var operatorZteacher1 = document.getElementById('IDoperatorZteacher1').value;
   var valueZteacher1 = parseFloat(validate(document.getElementById("IDvalueZteacher1").value.trim()));
   var resultYrobot1 = operate1(valueXstudent, valueZteacher1, operatorZteacher1);
