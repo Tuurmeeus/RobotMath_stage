@@ -17,7 +17,7 @@
   <div id="speech2number">
   <h1>Robot Math <span class="h1_small">Speech to Number</span></h1>
   <!--<h2></h2>-->
-  <p class="hints">hints</p>
+  <!--<p class="hints">hints</p>-->
   <table id="ID_table" border="1">
     <tr>
       <th colspan="4">X <small>(student)</small></th>
@@ -85,25 +85,25 @@
   <div class="col-md-6 mx-auto">
     <form class="mb-5">
       <div class="form-group">
-        <textarea name="text-box" id="textInput" class="form-control form-control-lg"
+        <textarea name="text-box" id="IDtextInput" class="form-control form-control-lg"
         placeholder="Type anything..."></textarea>
         <!--// SPEECH TO NUMBER TO SPEECH -->
         <script>
-        //// https://stackoverflow.com/questions/1847893/js-events-hooking-on-value-change-event-on-textInputs
+        //// https://stackoverflow.com/questions/1847893/js-events-hooking-on-value-change-event-on-IDtextInputs
         // Put a first value
-        document.getElementById("textInput").value="Hi, i am Nautilius, the first iteration from Robot Math";
+        document.getElementById("IDtextInput").value="Hi, i am Nautilius, the first iteration from Robot Math";
         //// setTimeout(function(){
         //// speak();
         ////}, 4000); // Wait x seconds
         // Detect and 'remember' old value every x seconds
         setInterval(function() { // Test if really needed
-          var oldVal = $('#textInput').val();
+          var oldVal = $('#IDtextInput').val();
 
           setTimeout(function(){
             // Your script that changes the value
-            // document.getElementById("textInput").value="the first iteration from Robot Math";
+            // document.getElementById("IDtextInput").value="the first iteration from Robot Math";
 
-            if(oldVal != $('#textInput').val())
+            if(oldVal != $('#IDtextInput').val())
             {
 
               // The value has changed, do something
@@ -139,7 +139,7 @@
         <select id="voice-select" class="form-control form-control-lg"></select>
 
       </div>
-      <input type="submit" id="ButtonSpeak" class="btn btn-light btn-lg btn-block" value="Speak!" onclick="setTimeout(speak(), 1000);" />
+      <input type="submit" id="ButtonSpeak" class="btn btn-light btn-lg btn-block" value="Speak!" onclick="setTimeout(speak_(), 1000);" />
     </form>
   </div>
 </div>
