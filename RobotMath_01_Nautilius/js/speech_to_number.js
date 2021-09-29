@@ -60,7 +60,8 @@ recognition.onresult = function(event) {
   var resultYrobot1and2Round = parseFloat(resultYrobot1and2).toFixed(2);
   document.getElementById("IDresultYrobotBig").innerHTML = resultYrobot1and2Round;
   document.getElementById("textInput").innerHTML = resultYrobot1and2Round;
-
+  
+  console.log('line 51', valueXstudent);
   //// console.log('line 58', resultYrobot1and2Round);
 }
 
