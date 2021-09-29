@@ -26,7 +26,7 @@ numbers.forEach(function(v, i, a){
   console.log(v, i);
   colorHTML += '<span style="background-color:' + v + ';"> ' + v + ' </span>';
 });
-//// hints.innerHTML = 'Click on the Robot or Submit then say a number. In English for now because easier to get online help if needed.';
+hints.innerHTML = 'Click on the Robot or Submit then say a number. In English for now because easier to get online help if needed.';
 
 function recognitionStart() {
   recognition.start();
