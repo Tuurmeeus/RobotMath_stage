@@ -102,13 +102,13 @@ input[type=submit]:hover {
   color: rgb(240,240,240); */
 }
 
-#valueXstudentBig, #resultYrobotBig {
+#IDvalueXstudentBig, #IDresultYrobotBig {
   font-size: 3.1em;
 }
-#valueXstudentBig {
+#IDvalueXstudentBig {
   color: rgb(100,100,220);
 }
-#resultYrobotBig {
+#IDresultYrobotBig {
   color: rgb(100,220,100);
 }
 #ButtonListen {
