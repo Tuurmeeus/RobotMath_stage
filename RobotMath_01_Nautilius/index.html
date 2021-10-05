@@ -95,11 +95,12 @@
         //// setTimeout(function(){
         //// speak();
         ////}, 4000); // Wait x seconds
-     
-
-          jQuery('#IDtextInput').on('input propertychange paste', function() {
-    // do your stuff
-    alert('Content has been changed');
+               
+        //// jQuery('#IDtextInput').on('input propertychange paste', function() {
+$("body").on('change', '#IDtextInput', function(){    // 3rd way
+    // do your code here
+      alert('Content has been changed');
+    // It will filter the element "Input_Id" from the "body" and apply "onChange effect" on it
 });
         </script>
         <!-- SPEECH TO NUMBER TO SPEECH //-->
