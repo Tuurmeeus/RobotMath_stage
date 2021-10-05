@@ -58,9 +58,12 @@ recognition.onresult = function(event) {
   var resultYrobot1and2 = operate2(resultYrobot1, valueZteacher2, operatorZteacher2);
 
   var resultYrobot1and2Round = parseFloat(resultYrobot1and2).toFixed(2);
-  document.getElementById("IDresultYrobotBig").innerHTML = resultYrobot1and2Round;
-  document.getElementById("IDtextInput").innerHTML = resultYrobot1and2Round;
-  
+  //// verwijder .00 en .?0
+  //// var a=strng.replace(/.00\s*$/, "");
+  var resultYrobot1and2Rounder = Math.round(((resultYrobot1and2Round * resultYrobot1and2Round) / resultYrobot1and2Round) * 100.) / 100.;
+  document.getElementById("IDresultYrobotBig").innerHTML = resultYrobot1and2Rounder;
+  document.getElementById("IDtextInput").innerHTML = resultYrobot1and2Rounder;
+
   console.log('line 51', valueXstudent);
   //// console.log('line 58', resultYrobot1and2Round);
 }
