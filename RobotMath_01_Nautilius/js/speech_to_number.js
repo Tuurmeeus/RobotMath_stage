@@ -15,9 +15,11 @@ recognition.grammars = speechRecognitionList;
 //// recognition.lang = 'en-US';
 // recognition.lang = 'fr-FR';
 //// use voice selected by menu 
-recognition.lang = document.getElementById('voice-select').value.substring(0,5); 
-console.log(recognition.lang);
-console.log(recognition.lang.length);
+var voiceSelect = document.getElementById('voice-select').value;
+var voiceSelectDialect = voiceSelect.substring(0,5);
+recognition.lang = voiceSelectDialect; 
+console.log(voiceSelectDialect);
+console.log(voiceSelectDialect.length);
 
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
