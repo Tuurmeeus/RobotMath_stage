@@ -99,7 +99,7 @@
         // Detect and 'remember' old value every x seconds
         setInterval(function() { // Test if really needed
           var oldVal = $('#IDtextInput').val();
-          setTimeout(function(){
+          //// setTimeout(function(){
             // Your script that changes the value
             // document.getElementById("IDtextInput").value="the first iteration from Robot Math";
             if(oldVal != $('#IDtextInput').val())
@@ -108,7 +108,7 @@
               console.log("Value was changed");
               speak();
             }
-          }, 1000); // Wait x seconds
+          //// }, 1000); // Wait x seconds
         }, 2000); // Repeat every x seconds // Test if really needed
           
 $("body").on('change propertychange input paste ', '#IDtextInput', function(){    // 3rd way
