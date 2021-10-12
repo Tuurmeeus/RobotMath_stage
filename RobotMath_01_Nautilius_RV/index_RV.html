@@ -1,151 +1,138 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Responsive Voice Test</title>
-<!-- NUMBER TO SPEECH RESPONSIVE VOICE JAVASCRIPT -->
-<script src="https://code.responsivevoice.org/responsivevoice.js?key=pqQI3QTE"></script>
-<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
-<style>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Text-To-Speech Demo</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="px-8 text-gray-900 min-h-screen flex bg-gray-200">
+      <div class="w-full max-w-screen-lg mx-auto my-8">
+        <h1 class="text-3xl font-bold text-center">Demo for text to speech</h1>
+        <div class="m-4 text-center">
+          <!-- Introduction Speech Button-->
 
-    body {
+          <div class="m-2">
+            <button
+              class="w-full border border-transparent rounded font-semibold text-sm px-5 py-2 focus:outline-none focus:shadow-outline bg-blue-500 text-gray-100 hover:bg-blue-600 hover:text-gray-200"
+              onclick="responsiveVoice.speak('hello there, welcome to my digital garden!');"
+            >
+              Play Here for Welcome Speech!
+            </button>
+          </div>
 
-        font-family: Arial;
+          <!--Speech Button with Background Music-->
 
-    }
+          <audio
+            loop="false"
+            width="0"
+            height="0"
+            id="sound"
+            src="https://audionautix.com/Music/CryinInMyBeer.mp3"
+            type="audio/mp3"
+          ></audio>
 
-    .inline {
-        float:left;
-    }
-
-    #framelogo {
-        margin-top:30px;
-        margin-left:30px;
-    }
-
-</style>
-
-<script>
-
-var windowReady = false;
-var voiceReady = false;
-
-$(window).load( function() {
-
-    windowReady = true;
-
-    $('#voicetestdiv').hide();
-    $('#waitingdiv').show();
-
-    playbutton.onclick = function() {
-
-        responsiveVoice.speak($('#text').val(),$('#voiceselection').val());
-
-    };
-
-    stopbutton.onclick = function() {
-
-        responsiveVoice.cancel();
-
-    };
-
-    responsiveVoice.AddEventListener("OnLoad",function(){
-        console.log("ResponsiveVoice Loaded Callback") ;
-    });
-
-
-    CheckLoading();
-
-
-
-});
-
-responsiveVoice.OnVoiceReady = function() {
-
-    voiceReady = true;
-    CheckLoading();
-}
-
-
-function CheckLoading() {
-
-    if (voiceReady && windowReady) {
-
-        $('#voicetestdiv').fadeIn(0.5);
-        $('#waitingdiv').fadeOut(0.5);
-
-        //Populate voice selection dropdown
-        var voicelist = responsiveVoice.getVoices();
-
-        var vselect = $("#voiceselection");
-        $.each(voicelist, function() {
-                vselect.append($("<option />").val(this.name).text(this.name));
-        });
-
-
-        getIframeWindow(document.getElementById('framelogo')).responsiveVoice = responsiveVoice;
-
-    }
-
-}
-
-function getIframeWindow(iframe_object) {
-  var doc;
-
-  if (iframe_object.contentWindow) {
-    return iframe_object.contentWindow;
-  }
-
-  if (iframe_object.window) {
-    return iframe_object.window;
-  }
-
-  if (!doc && iframe_object.contentDocument) {
-    doc = iframe_object.contentDocument;
-  }
-
-  if (!doc && iframe_object.document) {
-    doc = iframe_object.document;
-  }
-
-  if (doc && doc.defaultView) {
-   return doc.defaultView;
-  }
-
-  if (doc && doc.parentWindow) {
-    return doc.parentWindow;
-  }
-
-  return undefined;
-}
-
-
-</script>
-
-</head>
-
-<body>
-
-
-    <div class="inline">
-        <h1> ResponsiveVoice Example </h1>
-
-        <div id='waitingdiv'>
-            Loading ResponsiveVoice...<br />
-            If it doesn't load please <a href="http://caniuse.com/#feat=speech-synthesis" target="_blank">check your browser compatibility</a>
+          <div class="m-2">
+            <button
+              class="w-full border border-transparent rounded font-semibold text-sm px-5 py-2 focus:outline-none focus:shadow-outline bg-blue-500 text-gray-100 hover:bg-blue-600 hover:text-gray-200"
+              onclick="responsiveVoice.speak('This example shows how to have audio play as a background while text-to-speech is active'); 
+              document.getElementById('sound').play();"
+            >
+              Play With Background Music
+            </button>
+          </div>
         </div>
 
-        <div id='voicetestdiv'>
-            <textarea id="text" cols="45" rows="3">The voice consists of sound made by a human being using the vocal folds for talking, reading, singing, laughing, crying, screaming etc. The human voice is specifically a part of human sound production in which the vocal folds (vocal cords) are the primary sound source.</textarea>
-            <br />
-            <select id="voiceselection"></select>
-            <input  id="playbutton" type="button" value="Play" />
-            <input  id="stopbutton" type="button" value="Stop" />
+        <!--Highlight Text to Speech Demo-->
+
+        <div class="m-8">
+          <div class="bg-gray-100 shadow-sm rounded-lg p-8">
+            <h4 class="text-center font-semibold">
+              Highlight this text below to hear:
+            </h4>
+
+            <p class="text-center">
+              Dear Mother <br />
+              Dear mother, <br />
+              your love is special, <br />
+              I cannot help but show. <br />
+              Like flowers in a garden, <br />
+              Your love makes me grow. <br />
+              — Author Unknown
+            </p>
+          </div>
         </div>
+
+        <!--Write Text to Speech-->
+
+        <script src="https://code.responsivevoice.org/responsivevoice.js?key=1RVmdLT1"></script>
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+        <div class="m-4 text-center">
+          <div class="m-2">
+            <textarea
+              class="w-full border bg-gray-100 px-4 py-2 text-sm tracking-wide focus:outline-none focus:shadow-outline rounded"
+              id="text"
+              cols="45"
+              rows="3"
+            >
+        Hello world
+        </textarea
+            >
+          </div>
+
+          <div class="m-2">
+            <select
+              class="w-full border bg-gray-100 px-4 py-2 text-sm tracking-wide focus:outline-none focus:shadow-outline rounded"
+              id="voiceselection"
+            ></select>
+          </div>
+
+          <div class="m-2">
+            <input
+              class="w-full border border-transparent rounded font-semibold tracking-wide text-sm px-5 py-2 focus:outline-none focus:shadow-outline bg-blue-500 text-gray-100 hover:bg-blue-600 hover:text-gray-200"
+              onclick="responsiveVoice.speak($('#text').val(),$('#voiceselection').val());"
+              type="button"
+              value="Play"
+            />
+          </div>
+        </div>
+
+        <script>
+          var voicelist = responsiveVoice.getVoices();
+          var vselect = $("#voiceselection");
+          $.each(voicelist, function () {
+            vselect.append($("<option />").val(this.name).text(this.name));
+          });
+        </script>
+      </div>
     </div>
 
-    <iframe class="inline" id="framelogo" src="example_logo.html" frameborder="0" width="150" height="150" />
+    <!--Highligh Text to Speech Script-->
 
-
-</body>
+    <script>
+      function getSelectionText() {
+        var text = "";
+        if (window.getSelection) {
+          text = window.getSelection().toString();
+        } else if (document.selection && document.selection.type != "Control") {
+          text = document.selection.createRange().text;
+        }
+        return text;
+      }
+      $(document).ready(function () {
+        $(document).mouseup(function (e) {
+          setTimeout(function () {
+            responsiveVoice.cancel(); // stop anything currently being spoken
+            responsiveVoice.speak(getSelectionText());
+          }, 1);
+        });
+      });
+    </script>
+  </body>
 </html>
