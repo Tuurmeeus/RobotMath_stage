@@ -44,19 +44,29 @@ document.getElementById("ButtonSpeak").addEventListener("click", () => {
   //then we implement the speechsynthesis instance 
   window.speechSynthesis.speak(tts); 
 }); 
-
-function pause(){
-responsiveVoice.pause()
-}
-function resume(){
-responsiveVoice.resume()
-}
-function stop(){
-responsiveVoice.cancel();
-}
-    //// setTimeout(function(){
+   //// setTimeout(function(){
     ////  speak();
     ////  }, 4000); // Wait x seconds
+  
+//PAUSE 
+//// document.getElementById("pause").addEventListener("click", () => { 
+  // Pause the speechSynthesis instance 
+////   window.speechSynthesis.pause(); 
+//// }); 
+ 
+//RESUME 
+//// document.getElementById("resume").addEventListener("click", () => { 
+  // Resume the paused speechSynthesis instance 
+////   window.speechSynthesis.resume(); 
+//// }); 
+ 
+//CANCEL 
+//// document.querySelector("ButtonStop").addEventListener("click", () => { 
+document.getElementById("ButtonStop").addEventListener("click", () => { 
+// Cancel the speechSynthesis instance 
+  window.speechSynthesis.cancel(); 
+}); 
+ 
   //// RESPONSIVE VOICE
 </script>
 
