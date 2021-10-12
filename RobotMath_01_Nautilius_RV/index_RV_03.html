@@ -35,12 +35,15 @@ window.speechSynthesis.onvoiceschanged = () => {
   if(responsiveVoice.voiceSupport()) {
   responsiveVoice.speak("Hello world");
   }
-function speak(){
-let speaknow = document.getElementById('IDtextInput').value
-//// EXAMPLE: responsiveVoice.speak("hello world", "UK English Male", {pitch: 2, rate: 1.5, volume: 1, onstart: StartCallback, onend: EndCallback});
-// we set the pitch, rate and volume all in one line with the speak function. They can be written separately.
-responsiveVoice.speak(speaknow, "UK English Male" , {rate: 1.2}, {volume: 1}, {pitch: 2});
-}
+  
+//SETTING THE CONTROLS - SPEAK, PLAY, PAUSE AND RESUME 
+//SPEAK 
+//first we get the value of the textarea or document 
+document.getElementById("ButtonSpeak").addEventListener("click", () => { 
+  tts.text = document.getElementById("IDtextInput").value; 
+  //then we implement the speechsynthesis instance 
+  window.speechSynthesis.speak(tts); 
+}); 
 
 function pause(){
 responsiveVoice.pause()
