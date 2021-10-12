@@ -29,12 +29,15 @@ window.speechSynthesis.onvoiceschanged = () => {
   tts.voice = speechvoices[0]; 
  
   let select_voice = document.getElementById("voices"); 
-  speechvoices.forEach((voice, i) => (select_voice.options[i] = new Option(voice.name, i))); 
-}; 
-   // This changes the voice of the speaker or utterance to the selected voice 
+  speechvoices.forEach((voice, i) => (select_voice.options[i] = new Option(voice.name, i)));
+  
+     // This changes the voice of the speaker or utterance to the selected voice 
 document.getDocumentById("voices").addEventListener("change", () => { 
   tts.voice = voices[document.getDocumentById("voices").value]; 
 });
+  
+}; 
+
   
   //// BEGIN TEST SENTENCE
   if(responsiveVoice.voiceSupport()) {
