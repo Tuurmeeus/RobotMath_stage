@@ -18,7 +18,7 @@ if(responsiveVoice.voiceSupport()) {
   responsiveVoice.speak("Hello world");
   }
 function speak(){
-let speaknow = document.getElementById('IDresultYrobotBig').value
+let speaknow = document.getElementById('IDtextInput').value
 responsiveVoice.speak(speaknow, "UK English Male" , {rate: 1.2}, {volume: 1}, {pitch: 2});
 }
 // we set the pitch, rate and volume all in one line with the speak function. They can be written separately.
