@@ -32,9 +32,9 @@ window.speechSynthesis.onvoiceschanged = () => {
   speechvoices.forEach((voice, i) => (select_voice.options[i] = new Option(voice.name, i)));
   
      // This changes the voice of the speaker or utterance to the selected voice 
-document.getDocumentById("voices").addEventListener("change", () => { 
-  tts.voice = voices[document.getDocumentById("voices").value]; 
-});
+//// document.getDocumentById("voices").addEventListener("change", () => { 
+////  tts.voice = voices[document.getDocumentById("voices").value]; 
+//// });
   
 }; 
 
