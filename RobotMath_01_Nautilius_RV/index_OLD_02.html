@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Robot Math - speech to numbers - EN</title>
+
+  <!--// <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+-->
+<script src="js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <!--// SPEECH TO NUMBER HTML -->
+  <h1>Robot Math <span class="h1_small">Speech to Number</span></h1>
+  <!--<h2></h2>-->
+  <!--<p class="hints">hints</p>-->
+
+  <table id="ID_table" border="1">
+    <tr>
+      <th>X <small>(student)</small></th>
+      <th>Operator 1 <small>(teacher)</small></th>
+      <th>Number 1 <small>(teacher)</small></th>
+      <th>Operator 2 <small>(teacher)</small></th>
+      <th>Number 2 <small>(teacher)</small></th>
+      <th>Y <small>(robot)</small></th>
+    </tr>
+    <tr>
+      <td>
+      </td>
+      <td>
+        <select id="operatorZteacher1">
+          <option value="choose1">choose 1st operator</option>
+          <option value="addition1">+</option>
+          <option value="subtraction1">-</option>
+          <option value="multiplication1">*</option>
+          <option value="division1">/</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" id="valueZteacher1" name="valueZteacher1" value="0" />
+      </td>
+      <td>
+        <select id="operatorZteacher2">
+          <option value="choose2">choose 2th operator</option>
+          <option value="addition2">+</option>
+          <option value="subtraction2">-</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" id="valueZteacher2" name="valueZteacher2" value="0" />
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td id="valueXstudentBig">
+        <p class="output"><em>X</em></p>
+      </td>
+      <td colspan="4">
+        <!-- <img src="img/C-3PO.jpg" onclick="recognitionStart()"> -->
+      </td>
+      <td id="resultYrobotBig">
+        Y
+      </td>
+    </tr>
+  </table>
+  <input type="submit" id="ButtonListen" name="buttonSubmit" value="Listen" onclick="setTimeout(recognitionStart(), 1000);" />
+  <!-- <input type="reset" id="buttonReset" name="buttonReset" value="Reset" onClick="window.location.reload();" />
+-->
+<!-- SPEECH TO NUMBER HTML //-->
+
+
+<!--// NUMBER TO SPEECH HTML -->
+<h1>Robot Math <span class="h1_small">Number to Speech</span></h1>
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <form class="mb-5">
+      <div class="form-group">
+        <textarea name="text-box" id="textInput" class="form-control form-control-lg"
+        placeholder="Type anything..."></textarea>
+        <!--// SPEECH TO NUMBER TO SPEECH -->
+        <script>
+        //// https://stackoverflow.com/questions/1847893/js-events-hooking-on-value-change-event-on-textInputs
+        // Put a first value
+        document.getElementById("textInput").value="Hi, i am Nautilius, the first iteration from Robot Math";
+        //// setTimeout(function(){
+        //// speak();
+        ////}, 4000); // Wait x seconds
+        // Detect and 'remember' old value every x seconds
+        setInterval(function() { // Test if really needed
+          var oldVal = $('#textInput').val();
+
+          setTimeout(function(){
+            // Your script that changes the value
+            // document.getElementById("textInput").value="the first iteration from Robot Math";
+
+            if(oldVal != $('#textInput').val())
+            {
+
+              // The value has changed, do something
+              console.log("Value was changed");
+              //// speak();
+            }
+          }, 2000); // Wait x seconds
+
+        }, 3000); // Repeat every x seconds // Test if really needed
+
+        </script>
+        <!-- SPEECH TO NUMBER TO SPEECH //-->
+
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="rate">Rate</label>
+            <div id="rate-value" class="badge badge-success float-right">1</div>
+            <input type="range" id="rate" class="custom-range" min="0.5" max="2" value="1" step="0.1">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="pitch">Pitch</label>
+            <div id="pitch-value" class="badge badge-success float-right">1</div>
+            <input type="range" id="pitch" class="custom-range" min="0" max="2" value="1" step="0.1">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+
+        <select id="voice-select" class="form-control form-control-lg"></select>
+
+      </div>
+      <input type="submit" id="ButtonSpeak" class="btn btn-light btn-lg btn-block" value="Speak!" onclick="setTimeout(speak_(), 1000);" />
+    </form>
+  </div>
+</div>
+<!-- NUMBER TO SPEECH HTML //-->
+
+</body>
+<!-- SPEECH TO NUMBER JAVASCRIPT -->
+<script src="js/speech_to_number.js"></script>
+<!-- NUMBER TO SPEECH JAVASCRIPT -->
+<script src="js/number_to_speech.js"></script>
+</html>
