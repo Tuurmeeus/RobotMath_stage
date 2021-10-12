@@ -52,6 +52,11 @@ document.getElementById("ButtonSpeak").addEventListener("click", () => {
   //then we implement the speechsynthesis instance 
   window.speechSynthesis.speak(tts); 
 }); 
+document.getElementById("IDtextInput").addEventListener("change", () => { 
+  tts.text = document.getElementById("IDtextInput").value; 
+  //then we implement the speechsynthesis instance 
+  window.speechSynthesis.speak(tts); 
+}); 
    //// setTimeout(function(){
     ////  speak();
     ////  }, 4000); // Wait x seconds
