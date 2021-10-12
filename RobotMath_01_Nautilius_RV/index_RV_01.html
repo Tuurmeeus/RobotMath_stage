@@ -15,10 +15,10 @@
 //// RESPONSIVE VOICE
 //// EXAMPLE: responsiveVoice.speak("hello world", "UK English Male", {pitch: 2, rate: 1.5, volume: 1, onstart: StartCallback, onend: EndCallback});
 if(responsiveVoice.voiceSupport()) {
-  responsiveVoice.speak("Yiha world");
+  responsiveVoice.speak("Hello world");
   }
 function speak(){
-let speaknow = document.getElementById('IDtextInput').value
+let speaknow = document.getElementById('IDresultYrobotBig').value
 responsiveVoice.speak(speaknow, "UK English Male" , {rate: 1.2}, {volume: 1}, {pitch: 2});
 }
 // we set the pitch, rate and volume all in one line with the speak function. They can be written separately.
@@ -139,7 +139,7 @@ responsiveVoice.cancel();
     </div>
 <!--    <input type="submit" id="ButtonSpeak" class="btn btn-light btn-lg btn-block" value="Speak!" onclick="setTimeout(speak(), 1000);" />
 -->
-   <button id="ButtonSpeak" class="buttons" onclick ='speak();'> Speak! </button>
+   <button id="ButtonSpeak" class="btn btn-light btn-lg btn-block" onclick ='speak();'> Speak! </button>
    <!--<button class="buttons" style = "background: orange" onclick = 'pause();'> Pause </button>
    <button class="buttons" style = "background: lightgreen" onclick = 'resume();'>Resume </button>
    <button class="buttons" style = "background: red" onclick = 'cancel();'> Cancel </button>-->
