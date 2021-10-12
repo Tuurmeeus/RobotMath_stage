@@ -20,23 +20,7 @@ let tts = new SpeechSynthesisUtterance();
 tts.lang = "en";
 
 //Populating the select dropdown with the list of available voices on Web Speech API 
-let speechvoices = []; // global array of available voices 
- 
-window.speechSynthesis.onvoiceschanged = () => { 
-  // To get the list of voices using getVoices() function 
-  speechvoices = window.speechSynthesis.getVoices(); 
-  // We need to populate the section and set the first voice 
-  tts.voice = speechvoices[0]; 
- 
-  let select_voice = document.getElementById("voices"); 
-  speechvoices.forEach((voice, i) => (select_voice.options[i] = new Option(voice.name, i)));
-  
-     // This changes the voice of the speaker or utterance to the selected voice 
-//// document.getDocumentById("voices").addEventListener("change", () => { 
-////  tts.voice = voices[document.getDocumentById("voices").value]; 
-//// });
-  
-}; 
+
 
   
   //// BEGIN TEST SENTENCE
