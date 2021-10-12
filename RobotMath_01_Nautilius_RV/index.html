@@ -106,6 +106,9 @@ function speak(){
   let speaknow = document.getElementById('IDtextInput').value
   responsiveVoice.speak(speaknow, "UK English Male" , {rate: 1.2}, {volume: 1}, {pitch: 2});
 }
+     setTimeout(function(){
+      speak();
+      }, 4000); // Wait x seconds
   //// RESPONSIVE VOICE
         
       </script>
