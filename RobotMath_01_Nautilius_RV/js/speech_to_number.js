@@ -74,6 +74,14 @@ recognition.onresult = function(event) {
 
   console.log('line 51', valueXstudent);
   //// console.log('line 58', resultYrobot1and2Round);
+  
+
+  //// RESPONSIVE VOICE
+  //// responsiveVoice.speak("hello world", "UK English Male", {pitch: 2, rate: 1.5, volume: 1, onstart: StartCallback, onend: EndCallback});
+
+  responsiveVoice.speak(resultYrobot1and2Rounder, "UK English Male", {volume: 1});
+  
+  //// RESPONSIVE VOICE
 }
 
 recognition.onspeechend = function() {
