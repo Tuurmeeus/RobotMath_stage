@@ -28,7 +28,7 @@ responsiveVoice.pause()
 function resume(){
 responsiveVoice.resume()
 }
-function cancel(){
+function stop(){
 responsiveVoice.cancel();
 }
     //// setTimeout(function(){
@@ -139,7 +139,8 @@ responsiveVoice.cancel();
     </div>
 <!--    <input type="submit" id="ButtonSpeak" class="btn btn-light btn-lg btn-block" value="Speak!" onclick="setTimeout(speak(), 1000);" />
 -->
-    <input type="button" id="ButtonSpeak" class="btn btn-light btn-lg btn-block" value="Speak!" onclick="setTimeout(speak(), 1000);" />
+    <input type="button" id="ButtonSpeak" class="btn btn-light btn-lg btn-block" value="Speak!" onclick="speak();" />
+    <input type="button" id="ButtonStop" class="btn btn-light btn-lg btn-block" value="Stop!" onclick="stop();" />
  <!--   <button id="ButtonSpeak" class="btn btn-light btn-lg btn-block" onclick ='speak();'> Speak! </button> -->
    <!--<button class="buttons" style = "background: orange" onclick = 'pause();'> Pause </button>
    <button class="buttons" style = "background: lightgreen" onclick = 'resume();'>Resume </button>
