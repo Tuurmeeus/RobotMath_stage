@@ -101,8 +101,11 @@
 if(responsiveVoice.voiceSupport()) {
   responsiveVoice.speak("Yiha world");
   //// responsiveVoice.speak(resultYrobot1and2Rounder, "UK English Male", {volume: 1});
-  responsiveVoice.speak(document.getElementById("IDtextInput").textContent);
   }
+function speak(){
+  let speaknow = document.getElementById('IDtextInput').value
+  responsiveVoice.speak(speaknow, "UK English Male" , {rate: 1.2}, {volume: 1}, {pitch: 2});
+}
   //// RESPONSIVE VOICE
         
       </script>
