@@ -66,7 +66,38 @@ document.getElementById("ButtonStop").addEventListener("click", () => {
 // Cancel the speechSynthesis instance 
   window.speechSynthesis.cancel(); 
 }); 
- 
+
+  //TO SET THE VOLUME, PITCH, AND RATE 
+//Volume  
+//We get the volume value from the input 
+document.getDocumentById("volume").addEventListener("input", () => { 
+  const vol = document.getDocumentById("volume").value; 
+  // Set volume property of the SpeechSynthesisUtterance instance 
+  tts.volume = vol; 
+  // Updating the volume label 
+  document.querySelector("#vol-label").innerHTML = vol; 
+}); 
+
+//RATE 
+// We get the rate Value from the input 
+document.getDocumentById("rate").addEventListener("input", () => { 
+  const rate = document.getDocumentById("rate").value; 
+  // Set rate property of the SpeechSynthesisUtterance instance 
+  tts.rate = rate; 
+  // Updating the rate label 
+  document.getDocumentById("rate-lab").innerHTML = rate; 
+}); 
+
+//PITCH 
+// We get the pitch Value from the input 
+document.getElementById("pitch").addEventListener("input", () => { 
+  const pitch = document.getElementById("pitch").value; 
+  // Setting thepitch property of the SpeechSynthesisUtterance instance 
+  tts.pitch = pitch; 
+  // Updating the pitch label 
+  document.getDocumentById("pitch-lab").innerHTML = pitch; 
+});
+  
   //// RESPONSIVE VOICE
 </script>
 
