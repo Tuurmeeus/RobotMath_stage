@@ -79,10 +79,10 @@ recognition.onresult = function(event) {
   //// RESPONSIVE VOICE
   //// responsiveVoice.speak("hello world", "UK English Male", {pitch: 2, rate: 1.5, volume: 1, onstart: StartCallback, onend: EndCallback});
   
-if(responsiveVoice.voiceSupport()) {
-  responsiveVoice.speak("Yiha world");
+//// if(responsiveVoice.voiceSupport()) {
+////  responsiveVoice.speak("Yiha world");
   //// responsiveVoice.speak(resultYrobot1and2Rounder, "UK English Male", {volume: 1});
-  }
+////  }
   //// RESPONSIVE VOICE
 }
 
