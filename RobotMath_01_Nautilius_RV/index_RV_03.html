@@ -19,27 +19,27 @@ let tts = new SpeechSynthesisUtterance();
 // Setting the Speech Language
 tts.lang = "en";
 
-//Populating the select dropdown with the list of available voices on Web Speech API
-let speechvoices = []; // global array of available voices
-
-window.speechSynthesis.onvoiceschanged = () => {
-  // To get the list of voices using getVoices() function
-  speechvoices = window.speechSynthesis.getVoices();
-  // We need to populate the section and set the first voice
-  tts.voice = speechvoices[0];
-
-  let select_voice = document.getElementById("voice-select");
-  speechvoices.forEach((voice, i) => (select_voice.options[i] = new Option(voice.name, i)));
-};
+//Populating the select dropdown with the list of available voices on Web Speech API 
+let speechvoices = []; // global array of available voices 
+ 
+window.speechSynthesis.onvoiceschanged = () => { 
+  // To get the list of voices using getVoices() function 
+  speechvoices = window.speechSynthesis.getVoices(); 
+  // We need to populate the section and set the first voice 
+  tts.voice = speechvoices[0]; 
+ 
+  let select_voice = document.getElementById("voices"); 
+  speechvoices.forEach((voice, i) => (select_voice.options[i] = new Option(voice.name, i))); 
+}; 
+   // This changes the voice of the speaker or utterance to the selected voice 
+document.getDocumentById("voices").addEventListener("change", () => { 
+  tts.voice = voices[document.getDocumentById("voices").value]; 
+});
+  
   //// BEGIN TEST SENTENCE
   if(responsiveVoice.voiceSupport()) {
   responsiveVoice.speak("Hello world");
   }
-  
-  // This changes the voice of the speaker or utterance to the selected voice 
-document.getDocumentById("voice-select").addEventListener("change", () => { 
-  tts.voice = voices[document.getDocumentById("voice-select").value]; 
-});
   
 //SETTING THE CONTROLS - SPEAK, PLAY, PAUSE AND RESUME 
 //SPEAK 
@@ -208,9 +208,12 @@ document.getElementById("pitch").addEventListener("input", () => {
     </div>
     <div class="form-group">
 
-      <select id="voice-select" class="form-control form-control-lg" style="height: auto">
+      <!--<select id="voice-select" class="form-control form-control-lg" style="height: auto">
 <option>select a voice</option>
-      </select>
+      </select>-->
+      <select id="voices"> 
+      <option> option 1 </option> 
+    </select> 
 
     </div>
 <!--    <input type="submit" id="ButtonSpeak" class="btn btn-light btn-lg btn-block" value="Speak!" onclick="setTimeout(speak(), 1000);" />
