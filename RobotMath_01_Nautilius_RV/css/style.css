@@ -87,7 +87,7 @@ label {
   display: inline-block;
 }
 
-input[type=submit] {
+input[type=button] {
   width: 100%;
   color: rgb(240,240,240);
   padding: 12px 20px;
