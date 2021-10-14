@@ -21,14 +21,14 @@ tts.lang = "en";
 // Populating the select dropdown with the list of available voices on Web Speech API 
 let speechvoices = []; // global array of available voices 
  
-window.speechSynthesis.onvoiceschanged = () => { 
+//// window.speechSynthesis.onvoiceschanged = () => { 
   // To get the list of voices using getVoices() function 
-  speechvoices = window.speechSynthesis.getVoices(); 
+//// speechvoices = window.speechSynthesis.getVoices(); 
   // We need to populate the section and set the first voice 
-  tts.voice = speechvoices[0]; 
+//// tts.voice = speechvoices[0]; 
  
-  let select_voice = document.getElementById("voices"); 
-  speechvoices.forEach((voice, i) => (select_voice.options[i] = new Option(voice.name, i)));
+//// let select_voice = document.getElementById("voices"); 
+//// speechvoices.forEach((voice, i) => (select_voice.options[i] = new Option(voice.name, i)));
   
      // This changes the voice of the speaker or utterance to the selected voice 
 //// document.getDocumentById("voices").addEventListener("change", () => { 
@@ -51,16 +51,16 @@ responsiveVoice.setDefaultRate(0.8);
 //SETTING THE CONTROLS - SPEAK, PLAY, PAUSE AND RESUME 
 //SPEAK 
 //first we get the value of the textarea or document 
-document.getElementById("ButtonSpeak").addEventListener("click", () => { 
-  tts.text = document.getElementById("IDtextInput").value; 
+//// document.getElementById("ButtonSpeak").addEventListener("click", () => { 
+////   tts.text = document.getElementById("IDtextInput").value; 
   //then we implement the speechsynthesis instance 
-  window.speechSynthesis.speak(tts); 
-}); 
-document.getElementById("IDresultYrobotBig").addEventListener("change", () => { 
-  tts.text = document.getElementById("IDresultYrobotBig").value; 
+////   window.speechSynthesis.speak(tts); 
+//// }); 
+//// document.getElementById("IDresultYrobotBig").addEventListener("change", () => { 
+////   tts.text = document.getElementById("IDresultYrobotBig").value; 
   //then we implement the speechsynthesis instance 
-  window.speechSynthesis.speak(tts); 
-}); 
+////   window.speechSynthesis.speak(tts); 
+//// }); 
    //// setTimeout(function(){
     ////  speak();
     ////  }, 4000); // Wait x seconds
@@ -187,7 +187,7 @@ document.getElementById("pitch").addEventListener("input", () => {
   <!-- <button onclick="responsiveVoice.speak('The Internet is a series of tubes!');" 
 type="button" value="Play">Play</button>
   <input type="button" id="ButtonSpeak" name="buttonSubmit" value="Speak!" onclick="setTimeout(responsiveVoiceSpeak(), 1000);" /> -->
-  <input type="button" id="ButtonSpeak" name="buttonSubmit" value="Speak!" onclick="setTimeout(responsiveVoiceSpeak(), 1000);" />
+ <!-- <input type="button" id="ButtonSpeak" name="buttonSubmit" value="Speak!" onclick="setTimeout(responsiveVoiceSpeak(), 1000);" /> -->
 
 </div>
 <!-- SPEECH TO NUMBER HTML -->
