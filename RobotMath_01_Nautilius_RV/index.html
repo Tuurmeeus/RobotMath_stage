@@ -7,9 +7,8 @@
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="css/style.css">
 <title>Robot Math - speech to numbers - EN</title>
-<!--// <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
--->
-<!--//// <script src="js/jquery-3.6.0.min.js"></script> ////-->
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+<!-- <script src="js/jquery-3.6.0.min.js"></script> -->
 <script src="https://code.responsivevoice.org/responsivevoice.js?key=pqQI3QTE"></script>
 <script>
 //// RESPONSIVE VOICE
@@ -17,9 +16,9 @@
 let tts = new SpeechSynthesisUtterance();
 
 // Setting the Speech Language
-tts.lang = "fr";
+tts.lang = "en";
 
-//Populating the select dropdown with the list of available voices on Web Speech API 
+// Populating the select dropdown with the list of available voices on Web Speech API 
 let speechvoices = []; // global array of available voices 
  
 window.speechSynthesis.onvoiceschanged = () => { 
@@ -123,7 +122,7 @@ document.getElementById("pitch").addEventListener("input", () => {
 
 </head>
 <body>
-<!--// SPEECH TO NUMBER HTML -->
+<!-- SPEECH TO NUMBER HTML -->
 <div id="speech2number">
 <h1>Robot Math <span class="h1_small">Speech to Number</span></h1>
 <!--<h2></h2>-->
@@ -185,9 +184,9 @@ document.getElementById("pitch").addEventListener("input", () => {
 <input type="button" id="ButtonReset" name="buttonReset" value="Reset" onClick="window.location.reload();" />
   <textarea name="description" id="IDtextInput" class="form-control form-control-lg"
       placeholder="Hi, i am Nautilius, the first iteration from Robot Math."></textarea>
-  <!--<button onclick="responsiveVoice.speak('The Internet is a series of tubes!');" 
+  <!-- <button onclick="responsiveVoice.speak('The Internet is a series of tubes!');" 
 type="button" value="Play">Play</button>
-  <input type="button" id="ButtonSpeak" name="buttonSubmit" value="Speak!" onclick="setTimeout(responsiveVoiceSpeak(), 1000);" />-->
+  <input type="button" id="ButtonSpeak" name="buttonSubmit" value="Speak!" onclick="setTimeout(responsiveVoiceSpeak(), 1000);" /> -->
   <input type="button" id="ButtonSpeak" name="buttonSubmit" value="Speak!" onclick="setTimeout(responsiveVoiceSpeak(), 1000);" />
 
 </div>
