@@ -65,9 +65,9 @@ document.getElementById("IDresultYrobotBig").addEventListener("change", () => {
    //// setTimeout(function(){
     ////  speak();
     ////  }, 4000); // Wait x seconds
-
+document.getElementById("ButtonSpeak").onclick = function () { 
   responsiveVoice.speak(document.getElementById("IDtextInput").textContent);
-  
+  };
 //PAUSE 
 //// document.getElementById("pause").addEventListener("click", () => { 
   // Pause the speechSynthesis instance 
@@ -186,7 +186,8 @@ document.getElementById("pitch").addEventListener("input", () => {
   <textarea name="description" id="IDtextInput" class="form-control form-control-lg"
       placeholder="Hi, i am Nautilius, the first iteration from Robot Math."></textarea>
   <!--<button onclick="responsiveVoice.speak('The Internet is a series of tubes!');" 
-type="button" value="Play">Play</button>-->
+type="button" value="Play">Play</button>
+  <input type="button" id="ButtonSpeak" name="buttonSubmit" value="Speak!" onclick="setTimeout(responsiveVoiceSpeak(), 1000);" />-->
   <input type="button" id="ButtonSpeak" name="buttonSubmit" value="Speak!" onclick="setTimeout(responsiveVoiceSpeak(), 1000);" />
 
 </div>
