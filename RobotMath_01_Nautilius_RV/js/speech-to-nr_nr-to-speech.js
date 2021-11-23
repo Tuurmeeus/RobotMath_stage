@@ -134,9 +134,17 @@ function validate(value) {
 }
 
 //// AUTO CLICK ! 
+/*
   for ( let i = 0; i < 1; i++ ) {
   document.getElementById("clickMe").click();
 }
+
+or
+
+$(document).ready(function(){
+  $('#some-id').trigger('click');
+});
+*/
 //// AUTO CLICK ! 
 
 //// RESPONSIVE VOICE
