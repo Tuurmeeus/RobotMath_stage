@@ -171,6 +171,13 @@ input[type=reset]:hover {
   clear: both;
 }
 
+#RVoice-NonCommercial, #RVoice-NonCommercial a {
+  width: 100%; 
+  text-align: center; 
+  font-weight: normal; 
+  color: rgb(180,180,180) !important;
+  }
+
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
   .col-25, .col-75, input[type=submit] {
