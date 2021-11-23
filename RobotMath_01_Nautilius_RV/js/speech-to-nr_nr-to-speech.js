@@ -133,6 +133,12 @@ function validate(value) {
   } else return value;
 }
 
+//// AUTO CLICK ! 
+  for ( let i = 0; i < 1; i++ ) {
+  document.getElementById("clickMe").click();
+}
+//// AUTO CLICK ! 
+
 //// RESPONSIVE VOICE
   // 1. initialize new SpeechSynthesisUtterance object
   let tts = new SpeechSynthesisUtterance();
