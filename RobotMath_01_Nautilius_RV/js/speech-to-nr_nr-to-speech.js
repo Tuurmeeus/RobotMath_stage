@@ -43,19 +43,12 @@ function recognitionStart() {
 
 recognition.onresult = function(event) {
   // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
-  // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
-  // It has a getter so it can be accessed like an array
-  // The first [0] returns the SpeechRecognitionResult at the last position.
-  // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
-  // These also have getters so they can be accessed like arrays.
-  // The second [0] returns the SpeechRecognitionAlternative at position 0.
-  // We then return the transcript property of the SpeechRecognitionAlternative object
   var valueXstudent = event.results[0][0].transcript;
   diagnostic.textContent = valueXstudent;
   bg.style.backgroundColor = valueXstudent;
   console.log('Confidence: ' + event.results[0][0].confidence);
 
-  // ++++++++++++++++++++++++++++++ Math ++++++++++++++++++++++++++++++++++ //
+  //// MATH - speech to math to result ////
   document.getElementById("IDvalueXstudentBig").innerHTML = valueXstudent;
   var operatorZteacher1 = document.getElementById('IDoperatorZteacher1').value;
   var valueZteacher1 = parseFloat(validate(document.getElementById("IDvalueZteacher1").value.trim()));
@@ -71,19 +64,7 @@ recognition.onresult = function(event) {
   var resultYrobot1and2Rounder = Math.round(((resultYrobot1and2Round * resultYrobot1and2Round) / resultYrobot1and2Round) * 100.) / 100.;
   document.getElementById("IDresultYrobotBig").innerHTML = resultYrobot1and2Rounder;
   document.getElementById("IDtextInput").innerHTML = resultYrobot1and2Rounder;
-
-  //// console.log('line 51', valueXstudent);
   //// console.log('line 58', resultYrobot1and2Round);
-  
-  //// RESPONSIVE VOICE
-  //// responsiveVoice.speak("hello world", "UK English Male", {pitch: 2, rate: 1.5, volume: 1, onstart: StartCallback, onend: EndCallback});
-setTimeout(responsiveVoice.speak(resultYrobot1and2Rounder),1500);
-//// if(responsiveVoice.voiceSupport()) {
-////  responsiveVoice.speak("Yiha world");
-  //// responsiveVoice.speak(resultYrobot1and2Rounder, "UK English Male", {volume: 1});
-////  }
-  //// RESPONSIVE VOICE
-}
 
 recognition.onspeechend = function() {
   recognition.stop();
@@ -97,7 +78,8 @@ recognition.onerror = function(event) {
   diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
 }
 
-// ++++++++++++++++++++++++++++++ Math ++++++++++++++++++++++++++++++++++ //
+//// MATH - input operator and value ////
+//// MATH operator 1 ////
 // + before value is a way to convert a string to a number https://stackoverflow.com/questions/8377410/addition-is-not-working-in-javascript //
 function operate1(valueXstudent, valueZteacher1, operatorZteacher1) {
   if (operatorZteacher1 == 'choose1') {
@@ -112,7 +94,7 @@ function operate1(valueXstudent, valueZteacher1, operatorZteacher1) {
     return +valueXstudent * +valueZteacher1;
   }
 }
-////
+//// MATH operator 2 ////
 function operate2(resultYrobot1, valueZteacher2, operatorZteacher2) {
   if (operatorZteacher2 == 'choose2') {
     alert("You must choose a second operator!");
@@ -123,6 +105,7 @@ function operate2(resultYrobot1, valueZteacher2, operatorZteacher2) {
   }
 }
 
+//// VALIDATOR ////
 function validate(value) {
   if (value == null || value == "") {
     alert("Required Field");
@@ -133,7 +116,8 @@ function validate(value) {
   } else return value;
 }
 
-//// AUTO CLICK ! 
+  
+//// AUTO CLICK TEST ! //// 
 /*
   for ( let i = 0; i < 1; i++ ) {
   document.getElementById("clickMe").click();
@@ -145,8 +129,9 @@ $(document).ready(function(){
   $('#some-id').trigger('click');
 });
 */
-//// AUTO CLICK ! 
+//// AUTO CLICK TEST ! //// 
 
+  
 //// RESPONSIVE VOICE
   // 1. initialize new SpeechSynthesisUtterance object
   let tts = new SpeechSynthesisUtterance();
