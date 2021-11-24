@@ -12,6 +12,8 @@ const body = document.querySelector('body');
 const speech2number = document.querySelector('#speech2number');
 const number2speech = document.querySelector('#number2speech');
 
+"use strict";
+
 // Init voices array
 let voices = [];
 
