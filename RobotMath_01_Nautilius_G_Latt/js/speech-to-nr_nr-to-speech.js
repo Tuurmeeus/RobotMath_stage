@@ -1,5 +1,5 @@
-// ++++++++++++++++++++++++++++++ SPEECH ++++++++++++++++++++++++++++++++++ //
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ++++++++++++++++++++++++++++++ SPEECH TO NUMBER ++++++++++++++++++++++++++++++++++ //
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
@@ -77,8 +77,12 @@ recognition.onnomatch = function(event) {
 recognition.onerror = function(event) {
   diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
 }
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ++++++++++++++++++++++++++++++ SPEECH TO NUMBER ++++++++++++++++++++++++++++++++++ //
 
-//// MATH - input operator and value ////
+
+// ++++++++++++++++++++++++++++++ MATH ++++++++++++++++++++++++++++++++++ //
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 //// MATH operator 1 ////
 // + before value is a way to convert a string to a number https://stackoverflow.com/questions/8377410/addition-is-not-working-in-javascript //
 function operate1(valueXstudent, valueZteacher1, operatorZteacher1) {
@@ -115,8 +119,20 @@ function validate(value) {
     return 0;
   } else return value;
 }
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ++++++++++++++++++++++++++++++ MATH ++++++++++++++++++++++++++++++++++ //
+
+
+// ++++++++++++++++++++++++++++++ NUMBER TO SPEECH ++++++++++++++++++++++++++++++++++ //
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
   
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ++++++++++++++++++++++++++++++ NUMBER TO SPEECH ++++++++++++++++++++++++++++++++++ //
+
+  
+// ++++++++++++++++++++++++++++++ TEST ++++++++++++++++++++++++++++++++++ //
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 //// AUTO CLICK TEST ! //// 
 /*
   for ( let i = 0; i < 1; i++ ) {
@@ -130,110 +146,35 @@ $(document).ready(function(){
 });
 */
 //// AUTO CLICK TEST ! //// 
-
+//// AUTO SPEAK TEST ! //// 
+        //// https://stackoverflow.com/questions/1847893/js-events-hooking-on-value-change-event-on-IDtextInputs
+        // Put a first value
+        //////// document.getElementById("IDtextInput").value="Hi, i am Nautilius, the first iteration from Robot Math";
+        //// setTimeout(function(){
+        //// speak();
+        ////}, 4000); // Wait x seconds
+  /*
+        // Detect and 'remember' old value every x seconds
+        setInterval(function() { // Test if really needed
+          var oldVal = $('#IDtextInput').val();
+          //// setTimeout(function(){
+            // Your script that changes the value
+            // document.getElementById("IDtextInput").value="the first iteration from Robot Math";
+            if(oldVal != $('#IDtextInput').val())
+            {
+              // The value has changed, do something
+              console.log("Value was changed");
+              setTimeout(speak(), 2000);
+            }
+          //// }, 1000); // Wait x seconds
+        }, 2000); // Repeat every x seconds // Test if really needed
+          
+$("body").on('change propertychange input paste ', '#IDtextInput', function(){    // 3rd way
+      console.log("Value was changed again");
+  speak();
+});
+*/
+//// AUTO SPEAK TEST ! //// 
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ++++++++++++++++++++++++++++++ TEST ++++++++++++++++++++++++++++++++++ //
   
-//// RESPONSIVE VOICE
-  // 1. initialize new SpeechSynthesisUtterance object
-  let tts = new SpeechSynthesisUtterance();
-
-  // 2. Setting the Speech Language
-  tts.lang = "en";
-
-  // 3. Populating the select dropdown with the list of available voices on Web Speech API
-  // 3.1 global array of available voices
-  let speechvoices = [];
-  window.speechSynthesis.onvoiceschanged = () => {
-  // 3.2 To get the list of voices using getVoices() function
-  speechvoices = window.speechSynthesis.getVoices();
-  // 3.3 We need to populate the section and set the first voice
-  tts.voice = speechvoices[0];
-
-  let select_voice = document.getElementById("RVoices-select");
-  speechvoices.forEach((voice, i) => (select_voice.options[i] = new Option(voice.name, i)));
-  // 3.4 This changes the voice of the speaker or utterance to the selected voice
-  document.getDocumentById("RVoices-select").addEventListener("change", () => {
-  tts.voice = voices[document.getDocumentById("RVoices-select").value];
-  });
-};
-
-// 4. set Default Rate & Pitch example
-responsiveVoice.setDefaultRate(0.8);
-//// responsiveVoice.setDefaultPitch(1.0);
-
-
-// 5. BEGIN TEST SENTENCE
-if(responsiveVoice.voiceSupport()) {
-  responsiveVoice.speak("Hello, i am Nautilius, the first iteration from Robot Math");
-  responsiveVoice.clickEvent();
-}
-
-//SETTING THE CONTROLS - SPEAK, PLAY, PAUSE AND RESUME
-//SPEAK
-//first we get the value of the textarea or document
-//// document.getElementById("ButtonSpeak").addEventListener("click", () => {
-////   tts.text = document.getElementById("IDtextInput").value;
-//then we implement the speechsynthesis instance
-////   window.speechSynthesis.speak(tts);
-//// });
-//// document.getElementById("IDresultYrobotBig").addEventListener("change", () => {
-////   tts.text = document.getElementById("IDresultYrobotBig").value;
-//then we implement the speechsynthesis instance
-////   window.speechSynthesis.speak(tts);
-//// });
-//// setTimeout(function(){
-////  speak();
-////  }, 4000); // Wait x seconds
-document.getElementById("ButtonSpeak").onclick = function () {
-  responsiveVoice.speak(document.getElementById("IDtextInput").textContent);
-};
-//PAUSE
-//// document.getElementById("pause").addEventListener("click", () => {
-// Pause the speechSynthesis instance
-////   window.speechSynthesis.pause();
-//// });
-
-//RESUME
-//// document.getElementById("resume").addEventListener("click", () => {
-// Resume the paused speechSynthesis instance
-////   window.speechSynthesis.resume();
-//// });
-
-//CANCEL
-//// document.querySelector("ButtonStop").addEventListener("click", () => {
-document.getElementById("ButtonStop").addEventListener("click", () => {
-  // Cancel the speechSynthesis instance
-  window.speechSynthesis.cancel();
-});
-
-//TO SET THE VOLUME, PITCH, AND RATE
-//Volume
-//We get the volume value from the input
-document.getDocumentById("volume").addEventListener("input", () => {
-  const vol = document.getDocumentById("volume").value;
-  // Set volume property of the SpeechSynthesisUtterance instance
-  tts.volume = vol;
-  // Updating the volume label
-  document.querySelector("#vol-label").innerHTML = vol;
-});
-
-//RATE
-// We get the rate Value from the input
-document.getDocumentById("rate").addEventListener("input", () => {
-  const rate = document.getDocumentById("rate").value;
-  // Set rate property of the SpeechSynthesisUtterance instance
-  tts.rate = rate;
-  // Updating the rate label
-  document.getDocumentById("rate-lab").innerHTML = rate;
-});
-
-//PITCH
-// We get the pitch Value from the input
-document.getElementById("pitch").addEventListener("input", () => {
-  const pitch = document.getElementById("pitch").value;
-  // Setting thepitch property of the SpeechSynthesisUtterance instance
-  tts.pitch = pitch;
-  // Updating the pitch label
-  document.getDocumentById("pitch-lab").innerHTML = pitch;
-});
-
-//// RESPONSIVE VOICE
