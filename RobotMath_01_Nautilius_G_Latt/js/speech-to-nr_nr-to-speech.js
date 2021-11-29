@@ -221,13 +221,13 @@ const speak = () => {
 // EVENT LISTENERS
 
 // Text form submit
-//// window.onload=function(){
+window.onload=function(){
 textForm.addEventListener('submit', e => {
   e.preventDefault();
   speak();
   textInput.blur();
 });
-//// }
+}
 // Rate value change
 rate.addEventListener('change', e => (rateValue.textContent = rate.value));
 
