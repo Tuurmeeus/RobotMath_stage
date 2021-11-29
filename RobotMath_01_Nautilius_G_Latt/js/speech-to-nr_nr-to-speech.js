@@ -262,28 +262,27 @@ $(document).ready(function(){
         //// setTimeout(function(){
         //// speak();
         ////}, 4000); // Wait x seconds
-  /*
+  
         // Detect and 'remember' old value every x seconds
-        setInterval(function() { // Test if really needed
-          var oldVal = $('#IDtextInput').val();
-          //// setTimeout(function(){
+         //// setInterval(function() { // Test if really needed
+           //// var oldVal = $('#IDtextInput').val();
+           //// //// setTimeout(function(){
             // Your script that changes the value
             // document.getElementById("IDtextInput").value="the first iteration from Robot Math";
-            if(oldVal != $('#IDtextInput').val())
-            {
+            ////  if(oldVal != $('#IDtextInput').val())
+           ////   {
               // The value has changed, do something
-              console.log("Value was changed");
-              setTimeout(speak(), 2000);
-            }
+               //// console.log("Value was changed");
+               //// setTimeout(speak(), 2000);
+             //// }
           //// }, 1000); // Wait x seconds
-        }, 2000); // Repeat every x seconds // Test if really needed
+         //// }, 2000); // Repeat every x seconds // Test if really needed
           
-$("body").on('change propertychange input paste ', '#IDtextInput', function(){    // 3rd way
-      console.log("Value was changed again");
-  speak();
-});
-*/
+ //// $("body").on('change propertychange input paste ', '#IDtextInput', function(){    // 3rd way
+      //// console.log("Value was changed again");
+  ////  speak();
+ //// });
+
 //// AUTO SPEAK TEST ! //// 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // ++++++++++++++++++++++++++++++ TEST ++++++++++++++++++++++++++++++++++ //
-//// END ////
