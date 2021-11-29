@@ -18,7 +18,7 @@ html {
 #ID_table {
   font-family: Arial, Helvetica, sans-serif;
   width: 100%;
-  background-image: url("../img/C-3PO_alpha_dark.png");
+  /* background-image: url("../img/C-3PO_alpha_dark.png"); */
   background-repeat: no-repeat;
   background-size: 80% auto;
   background-position: center bottom;
