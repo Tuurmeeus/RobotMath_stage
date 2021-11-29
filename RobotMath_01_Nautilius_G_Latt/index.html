@@ -8,16 +8,18 @@
   <link rel="stylesheet" href="css/style.css">
   <title>Robot Math - speech to numbers - EN</title>
 
-  <!--// <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
--->
+  <!-- // JQUERY -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
 <script src="js/jquery-3.6.0.min.js"></script>
+    <!-- JQUERY // -->
+  
 </head>
 <body>
-  <!--// SPEECH TO NUMBER HTML -->
+  <!-- // SPEECH TO NUMBER HTML -->
   <div id="speech2number">
   <h1>Robot Math <span class="h1_small">Speech to Number</span></h1>
-  <!--<h2></h2>-->
   <p class="hints">hints</p>
+    
   <table id="ID_table" border="1">
     <tr>
       <th colspan="4">X <small>(student)</small></th>
@@ -72,8 +74,6 @@
   </tr>
   </table>
   <input type="submit" id="ButtonListen" name="buttonSubmit" value="Listen" onclick="setTimeout(recognitionStart(), 1000);" />
-  <!-- <input type="reset" id="buttonReset" name="buttonReset" value="Reset" onClick="window.location.reload();" />
--->
 </div>
 <!-- SPEECH TO NUMBER HTML //-->
 
@@ -142,6 +142,7 @@ $("body").on('change propertychange input paste ', '#IDtextInput', function(){  
  </select>
       </div>
       <input type="button" id="ButtonSpeak" class="btn btn-light btn-lg btn-block" value="Speak!" onclick="setTimeout(speak(), 1000);" />
+      <!-- <input type="reset" id="buttonReset" name="buttonReset" value="Reset" onClick="window.location.reload();" /> -->
     </form>
   </div>
 </div>
