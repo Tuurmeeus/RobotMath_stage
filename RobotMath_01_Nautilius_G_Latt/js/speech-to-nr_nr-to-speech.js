@@ -175,10 +175,10 @@ const speak = () => {
   }
   if (textInput.value !== '') {
     // Add background animation
-    body.style.background = "url(./img/wave.gif)";
-    body.style.backgroundRepeat = 'no-repeat';
-    body.style.backgroundSize = '100% 160%';
-    body.style.backgroundPosition = 'center -270px';
+    //// body.style.background = "url(./img/wave.gif)";
+    //// body.style.backgroundRepeat = 'no-repeat';
+    //// body.style.backgroundSize = '100% 160%';
+    //// body.style.backgroundPosition = 'center -270px';
     speech2number.style.backgroundColor = 'transparent';
     number2speech.style.backgroundColor = 'transparent';
 
