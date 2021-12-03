@@ -65,6 +65,7 @@ recognition.onresult = function(event) {
   document.getElementById("IDresultYrobotBig").innerHTML = resultYrobot1and2Rounder;
   document.getElementById("IDtextInput").innerHTML = resultYrobot1and2Rounder;
   //// console.log('line 58', resultYrobot1and2Round);
+}
 
 recognition.onspeechend = function() {
   recognition.stop();
@@ -226,10 +227,9 @@ textForm.addEventListener('submit', e => {
   e.preventDefault();
   speak();
   textInput.blur();
-});
-  
-//// ???? }
-  
+  });
+}
+
 // Rate value change
 rate.addEventListener('change', e => (rateValue.textContent = rate.value));
 
@@ -237,14 +237,14 @@ rate.addEventListener('change', e => (rateValue.textContent = rate.value));
 pitch.addEventListener('change', e => (pitchValue.textContent = pitch.value));
 
 // Voice select change
-voiceSelect.addEventListener('change', e => speak());  
+voiceSelect.addEventListener('change', e => speak());
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // ++++++++++++++++++++++++++++++ NUMBER TO SPEECH ++++++++++++++++++++++++++++++++++ //
 
-  
+
 // ++++++++++++++++++++++++++++++ TEST ++++++++++++++++++++++++++++++++++ //
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
-//// AUTO CLICK TEST ! //// 
+//// AUTO CLICK TEST ! ////
 /*
   for ( let i = 0; i < 1; i++ ) {
   document.getElementById("clickMe").click();
@@ -256,15 +256,15 @@ $(document).ready(function(){
   $('#some-id').trigger('click');
 });
 */
-//// AUTO CLICK TEST ! //// 
-//// AUTO SPEAK TEST ! //// 
+//// AUTO CLICK TEST ! ////
+//// AUTO SPEAK TEST ! ////
         //// https://stackoverflow.com/questions/1847893/js-events-hooking-on-value-change-event-on-IDtextInputs
         // Put a first value
         //////// document.getElementById("IDtextInput").value="Hi, i am Nautilius, the first iteration from Robot Math";
         //// setTimeout(function(){
         //// speak();
         ////}, 4000); // Wait x seconds
-  
+
         // Detect and 'remember' old value every x seconds
          //// setInterval(function() { // Test if really needed
            //// var oldVal = $('#IDtextInput').val();
@@ -279,12 +279,12 @@ $(document).ready(function(){
              //// }
           //// }, 1000); // Wait x seconds
          //// }, 2000); // Repeat every x seconds // Test if really needed
-          
+
  //// $("body").on('change propertychange input paste ', '#IDtextInput', function(){    // 3rd way
       //// console.log("Value was changed again");
   ////  speak();
  //// });
 
-//// AUTO SPEAK TEST ! //// 
+//// AUTO SPEAK TEST ! ////
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // ++++++++++++++++++++++++++++++ TEST ++++++++++++++++++++++++++++++++++ //
