@@ -12,10 +12,10 @@ var speechRecognitionList = new SpeechGrammarList();
 speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
 // recognition.continuous = false;
-recognition.lang = 'en-US';
-//// recognition.lang = 'fr-FR';
+//// recognition.lang = 'en-US';
+recognition.lang = 'FR';
 //// use voice selected by menu
-var voiceSelectMenu = document.getElementById('RVoices-select').innerHTML;
+var voiceSelectMenu = document.getElementById('voice-select').innerHTML;
 console.log(voiceSelectMenu);
 var voiceSelectMenuDialect = voiceSelectMenu.substring(0,5);
 recognition.lang = voiceSelectMenuDialect;
@@ -62,9 +62,13 @@ recognition.onresult = function(event) {
   //// verwijder .00 en .?0
   //// var a=strng.replace(/.00\s*$/, "");
   var resultYrobot1and2Rounder = Math.round(((resultYrobot1and2Round * resultYrobot1and2Round) / resultYrobot1and2Round) * 100.) / 100.;
-  document.getElementById("IDresultYrobotBig").innerHTML = resultYrobot1and2Rounder;
+  //// document.getElementById("IDresultYrobotBig").innerHTML = resultYrobot1and2Rounder;
   document.getElementById("IDtextInput").innerHTML = resultYrobot1and2Rounder;
   //// console.log('line 58', resultYrobot1and2Round);
+  setTimeout(function(){
+  speak();
+}, 2000); // Wait x seconds
+  //// document.getElementById("ButtonSpeak").click();
 }
 
 recognition.onspeechend = function() {
@@ -137,14 +141,9 @@ const rateValue = document.querySelector('#rate-value');
 const pitch = document.querySelector('#pitch');
 const pitchValue = document.querySelector('#pitch-value');
 const body = document.querySelector('body');
-const speech2number = document.querySelector('#speech2number');
-const number2speech = document.querySelector('#number2speech');
-
-//// "use strict";
 
 // Init voices array
-//// let voices = [];
-var voices = [];
+let voices = [];
 
 const getVoices = () => {
   voices = synth.getVoices();
@@ -154,7 +153,7 @@ const getVoices = () => {
     // Create option menu element
     const option = document.createElement('option');
     // Fill option menu with voice and language
-    option.textContent = voice.lang + ' (' + voice.name + ')';
+    option.textContent = voice.name + '(' + voice.lang + ')';
 
     // Set needed option attributes
     option.setAttribute('data-lang', voice.lang);
@@ -176,10 +175,11 @@ const speak = () => {
   }
   if (textInput.value !== '') {
     // Add background animation
-    //// body.style.background = "url(./img/wave.gif)";
-    //// body.style.backgroundRepeat = 'no-repeat';
-    //// body.style.backgroundSize = '100% 160%';
-    //// body.style.backgroundPosition = 'center -270px';
+    body.style.background = 'url(./img/wave.gif)';
+    body.style.backgroundRepeat = 'no-repeat';
+    body.style.backgroundSize = '100% 160%';
+    body.style.backgroundPosition = 'center -270px';
+    body.style.background = 'rgb(24, 24, 24)';
     speech2number.style.backgroundColor = 'transparent';
     number2speech.style.backgroundColor = 'transparent';
 
@@ -189,10 +189,10 @@ const speak = () => {
     // Speak end
     speakText.onend = e => {
       //// body.style.backgroundImage = `linear-gradient(to right, #0acffe 0%, #495aff 100%)`;
-      body.style.background = 'rgb(31, 31, 31)';
+      body.style.background = 'rgb(24, 24, 24)';
       speech2number.style.backgroundColor = 'rgb(47, 47, 47)';
       number2speech.style.backgroundColor = 'rgb(47, 47, 47)';
-  };
+    };
 
     // Speak error
     speakText.onerror = e => {
@@ -222,14 +222,13 @@ const speak = () => {
 // EVENT LISTENERS
 
 // Text form submit
-window.onload=function(){
+//// window.onload=function(){
 textForm.addEventListener('submit', e => {
   e.preventDefault();
   speak();
   textInput.blur();
-  });
-}
-
+});
+//// }
 // Rate value change
 rate.addEventListener('change', e => (rateValue.textContent = rate.value));
 
