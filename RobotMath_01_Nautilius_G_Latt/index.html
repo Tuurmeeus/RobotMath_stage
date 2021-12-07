@@ -12,14 +12,14 @@
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
 <script src="js/jquery-3.6.0.min.js"></script>
     <!-- JQUERY // -->
-  
+
 </head>
 <body>
   <!-- // SPEECH TO NUMBER HTML -->
   <div id="speech2number">
   <h1>Robot Math <span class="h1_small">Speech to Number</span></h1>
   <p class="hints">hints</p>
-    
+
   <table id="ID_table" border="1">
     <tr>
       <th colspan="4">X <small>(student)</small></th>
@@ -59,9 +59,9 @@
         <input type="text" id="IDvalueZteacher2" name="valueZteacher2" value="0" />
       </td>
     </tr>
+    <!--
     <tr>
       <td colspan="4">
-        <!-- <img src="img/C-3PO.jpg" onclick="recognitionStart()"> -->
       </td>
     </tr>
     <tr>
@@ -72,6 +72,7 @@
       Y
     </td>
   </tr>
+-->
   </table>
   <input type="submit" id="ButtonListen" name="buttonSubmit" value="Listen" onclick="setTimeout(recognitionStart(), 1000);" />
 </div>
@@ -81,6 +82,11 @@
 <!-- // NUMBER TO SPEECH HTML -->
 <div id="number2speech">
 <h1>Robot Math <span class="h1_small">Number to Speech</span></h1>
+<table id="ID_table">
+<tr>
+  <th>Y <small>(robot)</small></th>
+</tr>
+</table>
 <div class="row">
   <div class="col-md-6 mx-auto">
     <form class="mb-5">
@@ -106,7 +112,7 @@
       </div>
       <div class="form-group">
 
-        <select id="RVoices-select" class="form-control form-control-lg" style="height: auto">
+        <select id="voice-select" class="form-control form-control-lg" style="height: auto">
 <option data-lang="en-US" data-name="Alex">en-US (Alex)</option>
 <option data-lang="en-GB" data-name="Daniel">en-GB (Daniel)</option>
 <option data-lang="nl-BE" data-name="Ellen">nl-BE (Ellen)</option>
@@ -160,7 +166,7 @@
   </select>
       </div>
       <input type="button" id="ButtonSpeak" class="btn btn-light btn-lg btn-block" value="Speak!" onclick="setTimeout(speak(), 1000);" />
-      <input type="reset" id="buttonReset" name="buttonReset" value="Reset" onClick="window.location.reload();" /> 
+      <input type="reset" id="ButtonReset" name="buttonReset" value="Reset" onClick="window.location.reload();" />
     </form>
   </div>
 </div>
@@ -169,11 +175,11 @@
 
 
 <!-- SPEECH TO NUMBER JAVASCRIPT -->
-<!-- 
+<!--
 <script src="js/speech_to_number.js"></script>
 -->
 <!-- NUMBER TO SPEECH JAVASCRIPT -->
-<!-- 
+<!--
 <script src="js/number_to_speech.js"></script>
 -->
 <!-- SPEECH TO NUMBER &  NUMBER TO SPEECH JAVASCRIPT -->
