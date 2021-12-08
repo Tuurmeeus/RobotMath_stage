@@ -13,7 +13,7 @@ speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
 // recognition.continuous = false;
 //// recognition.lang = 'en-US';
-recognition.lang = 'FR';
+recognition.lang = 'fr-FR';
 //// use voice selected by menu
 var voiceSelectMenu = document.getElementById('voice-select').innerHTML;
 console.log(voiceSelectMenu);
@@ -57,18 +57,36 @@ recognition.onresult = function(event) {
   var operatorZteacher2 = document.getElementById('IDoperatorZteacher2').value;
   var valueZteacher2 = parseFloat(validate(document.getElementById("IDvalueZteacher2").value.trim()));
   var resultYrobot1and2 = operate2(resultYrobot1, valueZteacher2, operatorZteacher2);
-
   var resultYrobot1and2Round = parseFloat(resultYrobot1and2).toFixed(2);
   //// verwijder .00 en .?0
   //// var a=strng.replace(/.00\s*$/, "");
   var resultYrobot1and2Rounder = Math.round(((resultYrobot1and2Round * resultYrobot1and2Round) / resultYrobot1and2Round) * 100.) / 100.;
   //// document.getElementById("IDresultYrobotBig").innerHTML = resultYrobot1and2Rounder;
-  document.getElementById("IDtextInput").innerHTML = resultYrobot1and2Rounder;
   //// console.log('line 58', resultYrobot1and2Round);
-  setTimeout(function(){
-  speak();
-}, 2000); // Wait x seconds
-  //// document.getElementById("ButtonSpeak").click();
+
+
+    function validate(resultYrobot1and2Rounder) {
+      if (resultYrobot1and2Rounder == null || resultYrobot1and2Rounder == "" || (isNaN(resultYrobot1and2Rounder)) ) {
+        document.getElementById('IDtextInput').innerHTML = "I didn't recognise that number.";
+        setTimeout(function(){
+          speak();
+        }, 2000); // Wait x seconds
+      } else if (isNaN(resultYrobot1and2Rounder)) {
+        document.getElementById('IDtextInput').innerHTML = "I didn't recognise that number.";
+        setTimeout(function(){
+          speak();
+        }, 2000); // Wait x seconds
+      } else {
+        document.getElementById('IDtextInput').innerHTML = resultYrobot1and2Rounder;
+        setTimeout(function(){
+          speak();
+          //// document.getElementById("ButtonSpeak").click();
+        }, 2000); // Wait x seconds
+}
+}
+
+
+
 }
 
 recognition.onspeechend = function() {
@@ -77,10 +95,20 @@ recognition.onspeechend = function() {
 
 recognition.onnomatch = function(event) {
   diagnostic.textContent = "I didn't recognise that number.";
+  document.getElementById("IDtextInput").innerHTML = "I didn't recognise that number.";
+  setTimeout(function(){
+    speak();
+    //// document.getElementById("ButtonSpeak").click();
+  }, 2000); // Wait x seconds
 }
 
 recognition.onerror = function(event) {
   diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
+  document.getElementById("IDtextInput").innerHTML = 'Error occurred in recognition: ' + event.error;
+  setTimeout(function(){
+    speak();
+    //// document.getElementById("ButtonSpeak").click();
+  }, 2000); // Wait x seconds
 }
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // ++++++++++++++++++++++++++++++ SPEECH TO NUMBER ++++++++++++++++++++++++++++++++++ //
@@ -152,7 +180,7 @@ const getVoices = () => {
   voices.forEach(voice => {
     // Create option menu element
     const option = document.createElement('option');
-    // Fill option menu with voice and language
+    // Fill option menu with voice name and voice language
     option.textContent = voice.name + '(' + voice.lang + ')';
 
     // Set needed option attributes
@@ -178,7 +206,7 @@ const speak = () => {
     body.style.background = 'url(./img/wave.gif)';
     body.style.backgroundRepeat = 'no-repeat';
     body.style.backgroundSize = '100% 160%';
-    body.style.backgroundPosition = 'center -270px';
+    //// body.style.backgroundPosition = 'center 270px';
     body.style.background = 'rgb(24, 24, 24)';
     speech2number.style.backgroundColor = 'transparent';
     number2speech.style.backgroundColor = 'transparent';
@@ -245,44 +273,44 @@ voiceSelect.addEventListener('change', e => speak());
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 //// AUTO CLICK TEST ! ////
 /*
-  for ( let i = 0; i < 1; i++ ) {
-  document.getElementById("clickMe").click();
+for ( let i = 0; i < 1; i++ ) {
+document.getElementById("clickMe").click();
 }
 
 or
 
 $(document).ready(function(){
-  $('#some-id').trigger('click');
+$('#some-id').trigger('click');
 });
 */
 //// AUTO CLICK TEST ! ////
 //// AUTO SPEAK TEST ! ////
-        //// https://stackoverflow.com/questions/1847893/js-events-hooking-on-value-change-event-on-IDtextInputs
-        // Put a first value
-        //////// document.getElementById("IDtextInput").value="Hi, i am Nautilius, the first iteration from Robot Math";
-        //// setTimeout(function(){
-        //// speak();
-        ////}, 4000); // Wait x seconds
+//// https://stackoverflow.com/questions/1847893/js-events-hooking-on-value-change-event-on-IDtextInputs
+// Put a first value
+//////// document.getElementById("IDtextInput").value="Hi, i am Nautilius, the first iteration from Robot Math";
+//// setTimeout(function(){
+//// speak();
+////}, 4000); // Wait x seconds
 
-        // Detect and 'remember' old value every x seconds
-         //// setInterval(function() { // Test if really needed
-           //// var oldVal = $('#IDtextInput').val();
-           //// //// setTimeout(function(){
-            // Your script that changes the value
-            // document.getElementById("IDtextInput").value="the first iteration from Robot Math";
-            ////  if(oldVal != $('#IDtextInput').val())
-           ////   {
-              // The value has changed, do something
-               //// console.log("Value was changed");
-               //// setTimeout(speak(), 2000);
-             //// }
-          //// }, 1000); // Wait x seconds
-         //// }, 2000); // Repeat every x seconds // Test if really needed
+// Detect and 'remember' old value every x seconds
+//// setInterval(function() { // Test if really needed
+//// var oldVal = $('#IDtextInput').val();
+//// //// setTimeout(function(){
+// Your script that changes the value
+// document.getElementById("IDtextInput").value="the first iteration from Robot Math";
+////  if(oldVal != $('#IDtextInput').val())
+////   {
+// The value has changed, do something
+//// console.log("Value was changed");
+//// setTimeout(speak(), 2000);
+//// }
+//// }, 1000); // Wait x seconds
+//// }, 2000); // Repeat every x seconds // Test if really needed
 
- //// $("body").on('change propertychange input paste ', '#IDtextInput', function(){    // 3rd way
-      //// console.log("Value was changed again");
-  ////  speak();
- //// });
+//// $("body").on('change propertychange input paste ', '#IDtextInput', function(){    // 3rd way
+//// console.log("Value was changed again");
+////  speak();
+//// });
 
 //// AUTO SPEAK TEST ! ////
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
