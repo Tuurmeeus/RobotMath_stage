@@ -4,8 +4,8 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
 
-var numbers = [ '1' , '2' , '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '45', '46', '47', '48'];
-var grammar = '#JSGF V1.0; grammar numbers; public <color> = ' + numbers.join(' | ') + ' ;'
+var numbers = [ '0', '1' , '2' , '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '45', '46', '47', '48'];
+var grammar = '#JSGF V1.0; grammar numbers; public <numbers.digits> = ' + numbers.join(' | ') + ' ;'
 
 var recognition = new SpeechRecognition();
 var speechRecognitionList = new SpeechGrammarList();
@@ -13,14 +13,38 @@ speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
 // recognition.continuous = false;
 //// recognition.lang = 'en-US';
-recognition.lang = 'fr-FR';
-//// use voice selected by menu
-var voiceSelectMenu = document.getElementById('voice-select').innerHTML;
-console.log(voiceSelectMenu);
-var voiceSelectMenuDialect = voiceSelectMenu.substring(0,5);
-recognition.lang = voiceSelectMenuDialect;
-console.log(voiceSelectMenuDialect);
-console.log(voiceSelectMenuDialect.length);
+//// recognition.lang = 'fr-FR';
+//// recognize.lang = "en-GB";
+
+//// TEST Voice selected by menu ////
+//// https://towardsdatascience.com/voice-to-text-with-chrome-web-speech-api-d98462cb0849
+//// https://bensonruan.com/voice-to-text-with-chrome-web-speech-api/
+$( document ).ready(function() {
+  for (var i = 0; i < langs.length; i++) {
+    select_language.options[i] = new Option(langs[i][0], i);
+  }
+  select_language.selectedIndex = 6;
+  updateCountry();
+  select_dialect.selectedIndex = 6;
+});
+function updateCountry() {
+    for (var i = select_dialect.options.length - 1; i >= 0; i--) {
+      select_dialect.remove(i);
+    }
+    var list = langs[select_language.selectedIndex];
+    for (var i = 1; i < list.length; i++) {
+      select_dialect.options.add(new Option(list[i][1], list[i][0]));
+    }
+    //// select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
+    select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'hidden';
+  }
+
+  recognition.lang = select_dialect.value;
+
+  $("#select_language").change(function () {
+    updateCountry();
+  });
+  //// TEST Voice selected by menu ////
 
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
@@ -61,10 +85,9 @@ recognition.onresult = function(event) {
   //// verwijder .00 en .?0
   //// var a=strng.replace(/.00\s*$/, "");
   var resultYrobot1and2Rounder = Math.round(((resultYrobot1and2Round * resultYrobot1and2Round) / resultYrobot1and2Round) * 100.) / 100.;
-  //// document.getElementById("IDresultYrobotBig").innerHTML = resultYrobot1and2Rounder;
   //// console.log('line 58', resultYrobot1and2Round);
 
-
+/*
     function validate(resultYrobot1and2Rounder) {
       if (resultYrobot1and2Rounder == null || resultYrobot1and2Rounder == "" || (isNaN(resultYrobot1and2Rounder)) ) {
         document.getElementById('IDtextInput').innerHTML = "I didn't recognise that number.";
@@ -77,20 +100,35 @@ recognition.onresult = function(event) {
           speak();
         }, 2000); // Wait x seconds
       } else {
+*/
         document.getElementById('IDtextInput').innerHTML = resultYrobot1and2Rounder;
         setTimeout(function(){
           speak();
           //// document.getElementById("ButtonSpeak").click();
         }, 2000); // Wait x seconds
+/*
 }
 }
-
-
+*/
 
 }
+/* ERROR [Deprecation] speechSynthesis.speak() without user activation is no longer allowed since M71, around December 2018. See https://www.chromestatus.com/feature/5687444770914304 for more details
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var beginText = "Hi, i am Nautilius, the first iteration from Robot Math. Please fill in the Operator and Number fields, then click Listen.";
+document.getElementById('IDtextInput').innerHTML = beginText;
+setTimeout(function(){
+  document.getElementById("ButtonSpeak").click();
+}, 4000); // Wait x seconds
+*/
 
 recognition.onspeechend = function() {
   recognition.stop();
+  document.getElementById("IDtextInput").innerHTML = "Please, give me a new number!";
+  setTimeout(function(){
+    speak();
+    //// document.getElementById("ButtonSpeak").click();
+    document.getElementById("ButtonListen").click();
+  }, 4000); // Wait x seconds
 }
 
 recognition.onnomatch = function(event) {
