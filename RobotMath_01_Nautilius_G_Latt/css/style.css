@@ -9,11 +9,11 @@ body {
 html {
   height: 100%;
 }
-#speech2number, #number2speech {
+#speech2number, #number2speech, #page-reset {
   background-color: rgb(47, 47, 47);
   border-radius: 20px;
   padding: 4px 20px 20px 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 #ID_table {
   font-family: Arial, Helvetica, sans-serif;
@@ -39,7 +39,7 @@ h2 {
 }
 #ID_table, #ID_table td, #ID_table th {
   border: 0px solid black;
-  padding: 8px;
+  padding-top: 8px;
   text-align: center;
   border-radius: 8px;
 }
@@ -101,7 +101,16 @@ label {
   padding: 12px 12px 12px 0;
   display: inline-block;
 }
-
+.form-group-range-left {
+  width: 48%;
+  float: left;
+  margin-bottom: 20px;
+  }
+  .form-group-range-right {
+    width: 48%;
+    float: right;
+    margin-bottom: 20px;
+    }
 input[type=submit], input[type=button] {
   width: 100%;
   color: rgb(240,240,240);
