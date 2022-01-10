@@ -98,10 +98,11 @@ recognition.onspeechend = function() {
   document.getElementById("IDtextInput").innerHTML = "Please, give me a new number!";
   setTimeout(function(){
     speak();
+      recognition.stop();
     //// document.getElementById("ButtonSpeak").click();
   }, 2000); // Wait x seconds
   setTimeout(function(){
-  document.getElementById("ButtonListen").click();
+    recognition.start();
 }, 8000); // Wait x seconds
 }
 
