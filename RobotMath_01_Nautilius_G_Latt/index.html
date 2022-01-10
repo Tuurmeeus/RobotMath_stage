@@ -19,10 +19,11 @@
   <!-- // SPEECH TO NUMBER HTML -->
   <div id="speech2number">
   <h1>Robot Math <span class="h1_small">Speech to Number</span></h1>
-  <p class="hints">hints</p>
+  <!-- <p class="hints">hints</p> -->
 
-  <select id="select_language"></select>
-  <select id="select_dialect"></select>
+ <div class="form-group">
+   <select id="voice-select" class="form-control form-control-lg" style="height: auto"></select>
+ </div>
 
   <table id="ID_table" border="1">
     <tr>
@@ -63,20 +64,6 @@
         <input type="text" id="IDvalueZteacher2" name="valueZteacher2" value="0" />
       </td>
     </tr>
-    <!--
-    <tr>
-      <td colspan="4">
-      </td>
-    </tr>
-    <tr>
-      <th colspan="4">Y <small>(robot)</small></th>
-    </tr>
-    <tr>
-  <td colspan="4" id="IDresultYrobotBig">
-      Y
-    </td>
-  </tr>
--->
   </table>
   <input type="submit" id="ButtonListen" name="buttonSubmit" value="Listen" onclick="setTimeout(recognitionStart(), 1000);" />
 </div>
@@ -100,45 +87,30 @@
       </div>
       <div class="row">
         <div class="col-md-6">
-          <div class="form-group">
+          <div class="form-group form-group-range-left">
             <label for="rate">Rate</label>
             <div id="rate-value" class="badge badge-success float-right">1</div>
             <input type="range" id="rate" class="custom-range" min="0.5" max="2" value="1" step="0.1">
           </div>
         </div>
         <div class="col-md-6">
-          <div class="form-group">
+          <div class="form-group form-group-range-right">
             <label for="pitch">Pitch</label>
             <div id="pitch-value" class="badge badge-success float-right">1</div>
             <input type="range" id="pitch" class="custom-range" min="0" max="2" value="1" step="0.1">
           </div>
         </div>
       </div>
-      <div class="form-group">
-
-        <select id="voice-select" class="form-control form-control-lg" style="height: auto"></select>
-      </div>
       <input type="button" id="ButtonSpeak" class="btn btn-light btn-lg btn-block" value="Speak!" onclick="setTimeout(speak(), 1000);" />
-      <input type="reset" id="ButtonReset" name="buttonReset" value="Reset" onClick="window.location.reload();" />
     </form>
   </div>
 </div>
 </div>
-<!-- NUMBER TO SPEECH HTML // -->
-
-
-<!-- SPEECH TO NUMBER JAVASCRIPT -->
-<!--
-<script src="js/speech_to_number.js"></script>
--->
-<!-- NUMBER TO SPEECH JAVASCRIPT -->
-<!--
-<script src="js/number_to_speech.js"></script>
--->
+<div id="page-reset">
+  <input type="reset" id="ButtonReset" name="buttonReset" value="Reset" onClick="window.location.reload();" />
+</div>
 <!-- SPEECH TO NUMBER &  NUMBER TO SPEECH JAVASCRIPT -->
-<script src="js/languages.js"></script>
 <script src="js/speech-to-nr_nr-to-speech.js"></script>
 
 </body>
-
 </html>
