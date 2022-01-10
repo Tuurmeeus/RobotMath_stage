@@ -102,7 +102,7 @@ recognition.onspeechend = function() {
   }, 2000); // Wait x seconds
   setTimeout(function(){
   document.getElementById("ButtonListen").click();
-}, 6000); // Wait x seconds
+}, 8000); // Wait x seconds
 }
 
 recognition.onnomatch = function(event) {
