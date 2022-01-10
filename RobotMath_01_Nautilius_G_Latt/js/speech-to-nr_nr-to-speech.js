@@ -99,8 +99,10 @@ recognition.onspeechend = function() {
   setTimeout(function(){
     speak();
     //// document.getElementById("ButtonSpeak").click();
-    document.getElementById("ButtonListen").click();
   }, 2000); // Wait x seconds
+  setTimeout(function(){
+  document.getElementById("ButtonListen").click();
+}, 6000); // Wait x seconds
 }
 
 recognition.onnomatch = function(event) {
