@@ -12,39 +12,10 @@ var speechRecognitionList = new SpeechGrammarList();
 speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
 // recognition.continuous = false;
+//// SEE AT LINE 276
 //// recognition.lang = 'en-US';
 //// recognition.lang = 'fr-FR';
 //// recognize.lang = "en-GB";
-
-//// TEST Voice selected by menu ////
-//// https://towardsdatascience.com/voice-to-text-with-chrome-web-speech-api-d98462cb0849
-//// https://bensonruan.com/voice-to-text-with-chrome-web-speech-api/
-$( document ).ready(function() {
-  for (var i = 0; i < langs.length; i++) {
-    select_language.options[i] = new Option(langs[i][0], i);
-  }
-  select_language.selectedIndex = 6;
-  updateCountry();
-  select_dialect.selectedIndex = 6;
-});
-function updateCountry() {
-    for (var i = select_dialect.options.length - 1; i >= 0; i--) {
-      select_dialect.remove(i);
-    }
-    var list = langs[select_language.selectedIndex];
-    for (var i = 1; i < list.length; i++) {
-      select_dialect.options.add(new Option(list[i][1], list[i][0]));
-    }
-    //// select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
-    select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'hidden';
-  }
-
-  recognition.lang = select_dialect.value;
-
-  $("#select_language").change(function () {
-    updateCountry();
-  });
-  //// TEST Voice selected by menu ////
 
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
@@ -55,10 +26,10 @@ var hints = document.querySelector('.hints');
 
 var colorHTML= '';
 numbers.forEach(function(v, i, a){
-  console.log(v, i);
+  //// console.log(v, i);
   colorHTML += '<span style="background-color:' + v + ';"> ' + v + ' </span>';
 });
-hints.innerHTML = 'Please fill in the "Operator" and "Number" fields, then click "Listen".';
+
 
 function recognitionStart() {
   recognition.start();
@@ -67,7 +38,8 @@ function recognitionStart() {
 
 recognition.onresult = function(event) {
   // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
-  var valueXstudent = event.results[0][0].transcript;
+  var valueXstudentResult = event.results[0][0].transcript;
+  valueXstudent = (valueXstudentResult.replace(",", "."));
   diagnostic.textContent = valueXstudent;
   bg.style.backgroundColor = valueXstudent;
   console.log('Confidence: ' + event.results[0][0].confidence);
@@ -84,32 +56,32 @@ recognition.onresult = function(event) {
   var resultYrobot1and2Round = parseFloat(resultYrobot1and2).toFixed(2);
   //// verwijder .00 en .?0
   //// var a=strng.replace(/.00\s*$/, "");
-  var resultYrobot1and2Rounder = Math.round(((resultYrobot1and2Round * resultYrobot1and2Round) / resultYrobot1and2Round) * 100.) / 100.;
+  resultYrobot1and2Rounder = Math.round(((resultYrobot1and2Round * resultYrobot1and2Round) / resultYrobot1and2Round) * 100.) / 100.;
   //// console.log('line 58', resultYrobot1and2Round);
+  
+  /*
+  function VoiceLangDetection(VoiceLangAction) {
+  if (selectedVoiceLang === "fr-FR" || selectedVoiceLang === "nl-NL") {
+  resultYrobot1and2RounderCorrect = (resultYrobot1and2Rounder.replace(".", ","));
+  document.getElementById('IDtextInput').innerHTML = resultYrobot1and2RounderCorrect;
+  setTimeout(function(){
+  speak();
+}, 2000);
+} else if (selectedVoiceLang !== "fr-FR" || selectedVoiceLang !== "nl-NL") {
+resultYrobot1and2RounderCorrect = resultYrobot1and2Rounder;
+document.getElementById('IDtextInput').innerHTML = resultYrobot1and2RounderCorrect;
+setTimeout(function(){
+speak();
+}, 2000);
+}
+VoiceLangAction();
+}
+*/
 
-/*
-    function validate(resultYrobot1and2Rounder) {
-      if (resultYrobot1and2Rounder == null || resultYrobot1and2Rounder == "" || (isNaN(resultYrobot1and2Rounder)) ) {
-        document.getElementById('IDtextInput').innerHTML = "I didn't recognise that number.";
-        setTimeout(function(){
-          speak();
-        }, 2000); // Wait x seconds
-      } else if (isNaN(resultYrobot1and2Rounder)) {
-        document.getElementById('IDtextInput').innerHTML = "I didn't recognise that number.";
-        setTimeout(function(){
-          speak();
-        }, 2000); // Wait x seconds
-      } else {
-*/
-        document.getElementById('IDtextInput').innerHTML = resultYrobot1and2Rounder;
-        setTimeout(function(){
-          speak();
-          //// document.getElementById("ButtonSpeak").click();
-        }, 2000); // Wait x seconds
-/*
-}
-}
-*/
+document.getElementById('IDtextInput').innerHTML = resultYrobot1and2Rounder;
+setTimeout(function(){
+  speak();
+}, 2000);
 
 }
 /* ERROR [Deprecation] speechSynthesis.speak() without user activation is no longer allowed since M71, around December 2018. See https://www.chromestatus.com/feature/5687444770914304 for more details
@@ -117,7 +89,7 @@ recognition.onresult = function(event) {
 var beginText = "Hi, i am Nautilius, the first iteration from Robot Math. Please fill in the Operator and Number fields, then click Listen.";
 document.getElementById('IDtextInput').innerHTML = beginText;
 setTimeout(function(){
-  document.getElementById("ButtonSpeak").click();
+document.getElementById("ButtonSpeak").click();
 }, 4000); // Wait x seconds
 */
 
@@ -128,7 +100,7 @@ recognition.onspeechend = function() {
     speak();
     //// document.getElementById("ButtonSpeak").click();
     document.getElementById("ButtonListen").click();
-  }, 4000); // Wait x seconds
+  }, 2000); // Wait x seconds
 }
 
 recognition.onnomatch = function(event) {
@@ -219,7 +191,7 @@ const getVoices = () => {
     // Create option menu element
     const option = document.createElement('option');
     // Fill option menu with voice name and voice language
-    option.textContent = voice.name + '(' + voice.lang + ')';
+    option.textContent = voice.name + ' (' + voice.lang + ')';
 
     // Set needed option attributes
     option.setAttribute('data-lang', voice.lang);
@@ -269,6 +241,12 @@ const speak = () => {
     const selectedVoice = voiceSelect.selectedOptions[0].getAttribute(
       'data-name'
     );
+    selectedVoiceLang = voiceSelect.selectedOptions[0].getAttribute(
+      'data-lang'
+    );
+    recognition.lang = selectedVoiceLang;
+    //// console.log('line 276', selectedVoiceLang);
+    //// document.getElementById("voice=select").selectedIndex = 13; // Option Français
 
     // Loop through voices
     voices.forEach(voice => {
@@ -286,6 +264,13 @@ const speak = () => {
 };
 
 // EVENT LISTENERS
+//// HINTS ===> MAKEN IN ENGELS EN FRANS NAARGELANG DE GEKOZEN TAAL?
+//// hints.innerHTML = 'Please fill in the "Operator" and "Number" fields, then click "Listen".';
+IDtextInput.innerHTML = "Hi, i am a Robot that talks Math.";
+setTimeout(function(){
+  //// speak();
+  //// document.getElementById("ButtonSpeak").click();
+}, 4000); // Wait x seconds
 
 // Text form submit
 //// window.onload=function(){
@@ -295,6 +280,7 @@ textForm.addEventListener('submit', e => {
   textInput.blur();
 });
 //// }
+
 // Rate value change
 rate.addEventListener('change', e => (rateValue.textContent = rate.value));
 
@@ -303,8 +289,17 @@ pitch.addEventListener('change', e => (pitchValue.textContent = pitch.value));
 
 // Voice select change
 voiceSelect.addEventListener('change', e => speak());
+
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // ++++++++++++++++++++++++++++++ NUMBER TO SPEECH ++++++++++++++++++++++++++++++++++ //
+
+
+// ++++++++++++++++++++++++++++++ TIPS ++++++++++++++++++++++++++++++++++ //
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ++++++++++++++++++++++++++++++ TIPS ++++++++++++++++++++++++++++++++++ //
 
 
 // ++++++++++++++++++++++++++++++ TEST ++++++++++++++++++++++++++++++++++ //
