@@ -95,7 +95,7 @@ document.getElementById("ButtonSpeak").click();
 
 recognition.onspeechend = function() {
   recognition.stop();
-  document.getElementById("IDtextInput").innerHTML = "Please, give me a new number!";
+  document.getElementById("IDtextInput").innerHTML = "S'il vous plaît, donnez-moi un nouveau numéro !";
   setTimeout(function(){
     speak();
       recognition.stop();
@@ -103,12 +103,12 @@ recognition.onspeechend = function() {
   }, 2000); // Wait x seconds
   setTimeout(function(){
     recognition.start();
-}, 8000); // Wait x seconds
+}, 4000); // Wait x seconds
 }
 
 recognition.onnomatch = function(event) {
-  diagnostic.textContent = "I didn't recognise that number.";
-  document.getElementById("IDtextInput").innerHTML = "I didn't recognise that number.";
+  diagnostic.textContent = "Je n'ai pas reconnu ce numéro.";
+  document.getElementById("IDtextInput").innerHTML = "Je n'ai pas reconnu ce numéro.";
   setTimeout(function(){
     speak();
     //// document.getElementById("ButtonSpeak").click();
@@ -116,8 +116,8 @@ recognition.onnomatch = function(event) {
 }
 
 recognition.onerror = function(event) {
-  diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
-  document.getElementById("IDtextInput").innerHTML = 'Error occurred in recognition: ' + event.error;
+  diagnostic.textContent = "Une erreur s'est produite lors de la reconnaissance : " + event.error;
+  document.getElementById("IDtextInput").innerHTML = "Une erreur s'est produite lors de la reconnaissance : " + event.error;
   setTimeout(function(){
     speak();
     //// document.getElementById("ButtonSpeak").click();
@@ -269,7 +269,7 @@ const speak = () => {
 // EVENT LISTENERS
 //// HINTS ===> MAKEN IN ENGELS EN FRANS NAARGELANG DE GEKOZEN TAAL?
 //// hints.innerHTML = 'Please fill in the "Operator" and "Number" fields, then click "Listen".';
-IDtextInput.innerHTML = "Hi, i am a Robot that talks Math.";
+IDtextInput.innerHTML = "Bonjour, je suis un robot qui parle les maths.";
 setTimeout(function(){
   //// speak();
   //// document.getElementById("ButtonSpeak").click();
