@@ -26,76 +26,134 @@ var hints = document.querySelector('.hints');
 
 var colorHTML= '';
 numbers.forEach(function(v, i, a){
-  //// console.log(v, i);
+  console.log(v, i);
   colorHTML += '<span style="background-color:' + v + ';"> ' + v + ' </span>';
 });
 
 
 function recognitionStart() {
   recognition.start();
-  console.log('Ready to receive a number.');
+  console.log('01', 'Ready to receive a number.');
 }
 
 recognition.onresult = function(event) {
-  // SpeechRecognition -> SpeechRecognitionResultList object
-  var valueXstudentResult = event.results[0][0].transcript;
-   console.log('line 42', valueXstudentResult);
-  
-  valueXstudent = (valueXstudentResult.replace(",", "."));
-    console.log('line 45', valueXstudent);
-  
-  diagnostic.textContent = valueXstudent;
-  bg.style.backgroundColor = valueXstudent;
+  // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
+  // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
+  // It has a getter so it can be accessed like an array
+  // The first [0] returns the SpeechRecognitionResult at the last position.
+  // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
+  // These also have getters so they can be accessed like arrays.
+  // The second [0] returns the SpeechRecognitionAlternative at position 0.
+  // We then return the transcript property of the SpeechRecognitionAlternative object
+  var valueXstudentResultWithPoint = event.results[0][0].transcript;
+  valueXstudentResult = valueXstudentResultWithPoint.slice(0, -1);
+  console.log('02', valueXstudentResult);
+
+  diagnostic.textContent = valueXstudentResult;
+  bg.style.backgroundColor = valueXstudentResult;
   console.log('Confidence: ' + event.results[0][0].confidence);
 
-  document.getElementById("IDvalueXstudentBig").innerHTML = valueXstudent;
+  document.getElementById("IDvalueXstudentBig").innerHTML = valueXstudentResult;
+
+  // ++++ RESULT VALIDATION AND FILTERS ++++ //
+  valueXstudent = (valueXstudentResult.replace(",", "."));
+    console.log('03', valueXstudent);
+
+  //// BEGIN zero/Zero/ZERO detection to 0 ////
+  /// var stringResultLast = stringResultEval;
+  //// zéro to zero OR other not good converted numbers
+  var valueXstudentNormalise = valueXstudent.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  console.log('04', valueXstudentNormalise);
+
+  //// var pattern1 = /zero/i;
+  //// var stringResultLast1 = valueXstudentNormal.match(pattern1);
+  var stringResultLast1 = valueXstudentNormalise;
+  console.log('05', stringResultLast1);
+
+if (stringResultLast1 == "zero" || stringResultLast1 == "Zéro" || stringResultLast1 == "Zero" || stringResultLast1 == "ZERO" || stringResultLast1 == "Nul") {
+    stringResultLast2 = 0;
+    } else if (stringResultLast1 == "one" || stringResultLast1 == "Un" || stringResultLast1 == "Une") {
+      stringResultLast2 = 1;
+      } else if (stringResultLast1 == "seven" || stringResultLast1 == "Sept" || stringResultLast1 == "C'est" || stringResultLast1 == "Cette") {
+        stringResultLast2 = 7;
+      } else if (stringResultLast1 == "twelve" || stringResultLast1 == "Douze" || stringResultLast1 == "Douce" || stringResultLast1 == "Douces" || stringResultLast1 == "Tous") {
+        stringResultLast2 = 12;
+      } else if (stringResultLast1 == "thirteen" || stringResultLast1 == "Treize" || stringResultLast1 == "Tresse" || stringResultLast1 == "Triste" || stringResultLast1 == "Très" || stringResultLast1 == "très") {
+        stringResultLast2 = 13;
+      } else if (stringResultLast1 == "seventeen" || stringResultLast1 == "Dix-sept" || stringResultLast1 == "Dis-sept") {
+        stringResultLast2 = 17;
+      } else if (stringResultLast1 == "eighteen" || stringResultLast1 == "Dix-huit" || stringResultLast1 == "Dis-huit") {
+        stringResultLast2 = 18;
+      } else if (stringResultLast1 == "nineteen" || stringResultLast1 == "Dix-neuf" || stringResultLast1 == "Dis-neuf") {
+        stringResultLast2 = 19;
+      } else if (stringResultLast1 == "seventy" || stringResultLast1 == "Soixante-dix" || stringResultLast1 == "Septante") {
+        stringResultLast2 = 70;
+      } else if (stringResultLast1 == "hundred" || stringResultLast1 == "Cent" || stringResultLast1 == "Son" || stringResultLast1 == "Sont" || stringResultLast1 == "Sans") {
+        stringResultLast2 = 100;
+      } else if (stringResultLast1 == "one hundred twelve" || stringResultLast1 == "Cent douze" || stringResultLast1 == "Sans douze" || stringResultLast1 == "Sans douce" || stringResultLast1 == "Sans douces") {
+        stringResultLast2 = 112;
+      } else if (stringResultLast1 == "point" || stringResultLast1 == "Point" || stringResultLast1 == " point " || stringResultLast1 == "Virgule") {
+        stringResultLast2 = ".";
+      } else {
+        stringResultLast2 = stringResultLast1;
+      }
+      console.log('06', stringResultLast2);
+
+ //// END zero/Zero/ZERO detection -> 0 ////
+
+/*
+function validateNan(stringResultLast2){
+ if (stringResultLast2 == null || stringResultLast2 == "") {
+     document.getElementById("IDmathResult").innerHTML = "Je n'ai pas reconnu ce numéro. S'il vous plaît, donnez-moi un nouveau numéro !";
+     setTimeout(function(){
+       //// recognition.stop();
+     speak();
+   }, 1000); // Wait x seconds
+     setTimeout(function(){
+       recognition.start();
+   }, 2900); // Wait x seconds
+ } else if (isNaN(stringResultLast2)) {
+     document.getElementById("IDmathResult").innerHTML = "Je n'ai pas reconnu ce numéro. S'il vous plaît, donnez-moi un nouveau numéro !";
+     setTimeout(function(){
+       //// recognition.stop();
+     speak();
+   }, 1000); // Wait x seconds
+     setTimeout(function(){
+       recognition.start();
+   }, 2900); // Wait x seconds
+ } else return stringResultLast2;
+ }
+ console.log('07', stringResultLast2);
+
+ validateNan();
+*/
+
+
+    // ++++ RESULT VALIDATION AND FILTERS ++++ //
 
   // ++++++++++++++++++++++++++++++ MATH ++++++++++++++++++++++++++++++++++ //
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
   function mathResult(){
 
-    // ++++++++++++++++ MATH RESULT FURTHER VALIDATION AND FILTERS +++++++++++++++++++++ //
+    if (parseInt(stringResultLast2)) {
+        console.log("It's a INT number");
+        document.getElementById("IDmathResult").innerHTML = "It's a INT number";
+        stringResultLastNumber = stringResultLast2;
+    } else if (parseFloat(stringResultLast2)) {
+      console.log("It's a FLOAT number");
+      document.getElementById("IDmathResult").innerHTML = "It's a FLOAT number";
+      stringResultLastNumber = stringResultLast2;
+    } else {
+        console.log("It's not a number");
+        document.getElementById("IDmathResult").innerHTML = "It's not a number";
+    }
 
-    //// BEGIN zero/Zero/ZERO detection to 0 ////
-    /// var stringResultLast = stringResultEval;
-    //// zéro to zero OR other not good converted numbers 
-    var valueXstudentNormal = valueXstudent.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    console.log('line 63', valueXstudentNormal);
-    
-    //// var pattern1 = /zero/i;
-    //// var stringResultLast1 = valueXstudentNormal.match(pattern1);
-    var stringResultLast1 = valueXstudentNormal;
-
-if (stringResultLast1 == "zero" || stringResultLast1 == "Zéro" || stringResultLast1 == "Zero" || stringResultLast1 == "ZERO") {
-      stringResultLast2 = 0;
-      } else if (stringResultLast1 == "one" || stringResultLast1 == "Un" || stringResultLast1 == "Une") {
-        stringResultLast2 = 1;
-        } else if (stringResultLast1 == "seven" || stringResultLast1 == "Sept" || stringResultLast1 == "C'est") {
-          stringResultLast2 = 7;
-        } else if (stringResultLast1 == "twelve" || stringResultLast1 == "Douze" || stringResultLast1 == "Douce" || stringResultLast1 == "Tous") {
-          stringResultLast2 = 12;
-        } else if (stringResultLast1 == "seventeen" || stringResultLast1 == "Dix-sept" || stringResultLast1 == "Dis-sept") {
-          stringResultLast2 = 17;
-        } else if (stringResultLast1 == "eighteen" || stringResultLast1 == "Dix-huit" || stringResultLast1 == "Dis-huit") {
-          stringResultLast2 = 18;
-        } else if (stringResultLast1 == "nineteen" || stringResultLast1 == "Dix-neuf" || stringResultLast1 == "Dis-neuf") {
-          stringResultLast2 = 19;
-        } else if (stringResultLast1 == "seventy" || stringResultLast1 == "Soixante-dix" || stringResultLast1 == "Septante") {
-          stringResultLast2 = 70;
-        } else if (stringResultLast1 == "hundred" || stringResultLast1 == "Cent" || stringResultLast1 == "Son" || stringResultLast1 == "Sans") {
-          stringResultLast2 = 100;
-        } else if (stringResultLast1 == "one hundred twelve" || stringResultLast1 == "Cent douze" || stringResultLast1 == "Sans douze" || stringResultLast1 == "Sans douce") {
-          stringResultLast2 = 112;
-        } else {
-          stringResultLast2 = valueXstudentNormal;
-        }
-   //// END zero/Zero/ZERO detection -> 0 ////
-        console.log('line 93', stringResultLast2);
-
-   document.getElementById("IDvalueTeacher1").value = stringResultLast2;
+    document.getElementById("IDvalueTeacher1").value = stringResultLastNumber;
 
     //// var valueTeacher1 = document.getElementById('IDvalueTeacher1').value;
-    var valueTeacher1 = stringResultLast2;
+    var valueTeacher1 = stringResultLastNumber;
+    console.log('08', valueTeacher1);
+
     var operatorTeacher1 = document.getElementById('IDoperatorTeacher1').value;
     var valueTeacher2 = document.getElementById('IDvalueTeacher2').value;
 
@@ -111,17 +169,17 @@ if (stringResultLast1 == "zero" || stringResultLast1 == "Zéro" || stringResultL
    var mathResultReplace = mathResultResult.replace(/[^-()\d/*+.]/g, '');
    console.log('line 112', mathResultReplace);
 
-   //// alert(eval(str));
-   var mathResultEval = eval(mathResultReplace);
-   console.log(mathResultEval);
+   //// OUTPUT to SPEAK with "zero" detection
+   var mathResultEvalParse = eval(mathResultReplace);
+   console.log('line 128', mathResultEvalParse);
+
+   var mathResultEval = parseFloat(mathResultEvalParse).toFixed(2).replace(/\.0+$/,'');
+   console.log('line 131', mathResultEval);
+
+   document.getElementById('IDmathResult').innerHTML = mathResultEval;
 
     //// MISSCHIEN NOG NODIG ////
     //// resultYrobot1and2Rounder = Math.round(((resultYrobot1and2Round * resultYrobot1and2Round) / resultYrobot1and2Round) * 100.) / 100.;
-
-    //// OUTPUT to SPEAK without "zero" detection
-    //// document.getElementById('IDmathResult').innerHTML = stringResultEval;
-   //// OUTPUT to SPEAK with "zero" detection
-   document.getElementById('IDmathResult').innerHTML = mathResultEval;
   }
 
   //// VALIDATOR //// ! OPNIEUW INSTELLEN INDIEN BOVENSTAANDE WERKT !
@@ -134,6 +192,7 @@ if (stringResultLast1 == "zero" || stringResultLast1 == "Zéro" || stringResultL
       alert("Must be a Number");
       return 0;
     } else return value;
+    }
   */
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
   // ++++++++++++++++++++++++++++++ MATH ++++++++++++++++++++++++++++++++++ //
@@ -145,7 +204,9 @@ if (stringResultLast1 == "zero" || stringResultLast1 == "Zéro" || stringResultL
   setTimeout(function(){
     speak();
   }, 1000);
-
+  setTimeout(function(){
+    recognitionStart();
+  }, 4000);
 }
 /* ERROR [Deprecation] speechSynthesis.speak() without user activation is no longer allowed since M71, around December 2018. See https://www.chromestatus.com/feature/5687444770914304 for more details
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -156,6 +217,21 @@ document.getElementById("ButtonSpeak").click();
 }, 4000); // Wait x seconds
 */
 
+recognition.onspeechend = function() {
+  recognition.stop();
+}
+recognition.onnomatch = function(event) {
+    recognition.stop();
+  document.getElementById("IDmathResult").innerHTML = "Je n'ai pas reconnu ce numéro. S'il vous plaît, donnez-moi un nouveau numéro !";
+  speak();
+}
+recognition.onerror = function(event) {
+    recognition.stop();
+  document.getElementById("IDmathResult").innerHTML = "Une erreur s'est produite lors de la reconnaissance." /* + event.error */;
+  speak();
+}
+
+/* ***
 recognition.onspeechend = function() {
   recognition.stop();
   setTimeout(function(){
@@ -185,6 +261,7 @@ recognition.onerror = function(event) {
     //// document.getElementById("ButtonSpeak").click();
   }, 4000); // Wait x seconds
 }
+*** */
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // ++++++++++++++++++++++++++++++ SPEECH TO NUMBER ++++++++++++++++++++++++++++++++++ //
 
@@ -292,7 +369,7 @@ const speak = () => {
 //// hints.innerHTML = 'Please fill in the "Operator" and "Number" fields, then click "Listen".';
 IDmathResult.innerHTML = "Bonjour, je suis un robot qui parle les maths.";
 setTimeout(function(){
-  document.getElementById('IDvoiceSelect').selectedIndex = 4;
+  document.getElementById('IDvoiceSelect').selectedIndex = 159;
   speak();
   //// document.getElementById("ButtonSpeak").click();
 }, 4000); // Wait x seconds
