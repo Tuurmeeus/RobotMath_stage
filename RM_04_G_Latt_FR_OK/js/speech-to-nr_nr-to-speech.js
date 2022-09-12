@@ -39,7 +39,11 @@ function recognitionStart() {
 recognition.onresult = function(event) {
   // SpeechRecognition -> SpeechRecognitionResultList object
   var valueXstudentResult = event.results[0][0].transcript;
+   console.log('line 42', valueXstudentResult);
+  
   valueXstudent = (valueXstudentResult.replace(",", "."));
+    console.log('line 45', valueXstudent);
+  
   diagnostic.textContent = valueXstudent;
   bg.style.backgroundColor = valueXstudent;
   console.log('Confidence: ' + event.results[0][0].confidence);
@@ -56,8 +60,8 @@ recognition.onresult = function(event) {
     /// var stringResultLast = stringResultEval;
     //// zéro to zero OR other not good converted numbers 
     var valueXstudentNormal = valueXstudent.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    console.log(valueXstudentNormal);
-
+    console.log('line 63', valueXstudentNormal);
+    
     //// var pattern1 = /zero/i;
     //// var stringResultLast1 = valueXstudentNormal.match(pattern1);
     var stringResultLast1 = valueXstudentNormal;
@@ -86,8 +90,8 @@ if (stringResultLast1 == "zero" || stringResultLast1 == "Zéro" || stringResultL
           stringResultLast2 = valueXstudentNormal;
         }
    //// END zero/Zero/ZERO detection -> 0 ////
-    
-    
+        console.log('line 93', stringResultLast2);
+
    document.getElementById("IDvalueTeacher1").value = stringResultLast2;
 
     //// var valueTeacher1 = document.getElementById('IDvalueTeacher1').value;
@@ -105,7 +109,7 @@ if (stringResultLast1 == "zero" || stringResultLast1 == "Zéro" || stringResultL
 
     //// take out anything other than digits, (), -+/* and . https://stackoverflow.com/questions/6479236/calculate-string-value-in-javascript-not-using-eval
    var mathResultReplace = mathResultResult.replace(/[^-()\d/*+.]/g, '');
-   console.log(mathResultReplace);
+   console.log('line 112', mathResultReplace);
 
    //// alert(eval(str));
    var mathResultEval = eval(mathResultReplace);
@@ -140,7 +144,7 @@ if (stringResultLast1 == "zero" || stringResultLast1 == "Zéro" || stringResultL
   //// document.getElementById('IDmathResult').innerHTML = stringResultEval;
   setTimeout(function(){
     speak();
-  }, 2000);
+  }, 1000);
 
 }
 /* ERROR [Deprecation] speechSynthesis.speak() without user activation is no longer allowed since M71, around December 2018. See https://www.chromestatus.com/feature/5687444770914304 for more details
