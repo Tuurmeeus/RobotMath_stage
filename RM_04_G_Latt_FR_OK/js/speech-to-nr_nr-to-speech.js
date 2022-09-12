@@ -60,7 +60,8 @@ recognition.onresult = function(event) {
 
     //// var pattern1 = /zero/i;
     //// var stringResultLast1 = valueXstudentNormal.match(pattern1);
-    
+    var stringResultLast1 = valueXstudentNormal;
+
 if (stringResultLast1 == "zero" || stringResultLast1 == "Zéro" || stringResultLast1 == "Zero" || stringResultLast1 == "ZERO") {
       stringResultLast2 = 0;
       } else if (stringResultLast1 == "one" || stringResultLast1 == "Un" || stringResultLast1 == "Une") {
