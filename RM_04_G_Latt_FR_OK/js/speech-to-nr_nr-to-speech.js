@@ -52,20 +52,41 @@ recognition.onresult = function(event) {
 
     // ++++++++++++++++ MATH RESULT FURTHER VALIDATION AND FILTERS +++++++++++++++++++++ //
 
-    //// zero/Zero/ZERO detection to 0 ////
+    //// BEGIN zero/Zero/ZERO detection to 0 ////
     /// var stringResultLast = stringResultEval;
-    //// zéro to zero
+    //// zéro to zero OR other not good converted numbers 
     var valueXstudentNormal = valueXstudent.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     console.log(valueXstudentNormal);
 
-    var pattern1 = /zero/i;
-    var stringResultLast1 = valueXstudentNormal.match(pattern1);
-    if (stringResultLast1 == 'zero' || stringResultLast1 == 'Zero' || stringResultLast1 == 'ZERO') {
+    //// var pattern1 = /zero/i;
+    //// var stringResultLast1 = valueXstudentNormal.match(pattern1);
+    
+if (stringResultLast1 == "zero" || stringResultLast1 == "Zéro" || stringResultLast1 == "Zero" || stringResultLast1 == "ZERO") {
       stringResultLast2 = 0;
-    } else {
-      stringResultLast2 = valueXstudentNormal;
-    }
-   //// zero/Zero/ZERO detection -> 0 ////
+      } else if (stringResultLast1 == "one" || stringResultLast1 == "Un" || stringResultLast1 == "Une") {
+        stringResultLast2 = 1;
+        } else if (stringResultLast1 == "seven" || stringResultLast1 == "Sept" || stringResultLast1 == "C'est") {
+          stringResultLast2 = 7;
+        } else if (stringResultLast1 == "twelve" || stringResultLast1 == "Douze" || stringResultLast1 == "Douce" || stringResultLast1 == "Tous") {
+          stringResultLast2 = 12;
+        } else if (stringResultLast1 == "seventeen" || stringResultLast1 == "Dix-sept" || stringResultLast1 == "Dis-sept") {
+          stringResultLast2 = 17;
+        } else if (stringResultLast1 == "eighteen" || stringResultLast1 == "Dix-huit" || stringResultLast1 == "Dis-huit") {
+          stringResultLast2 = 18;
+        } else if (stringResultLast1 == "nineteen" || stringResultLast1 == "Dix-neuf" || stringResultLast1 == "Dis-neuf") {
+          stringResultLast2 = 19;
+        } else if (stringResultLast1 == "seventy" || stringResultLast1 == "Soixante-dix" || stringResultLast1 == "Septante") {
+          stringResultLast2 = 70;
+        } else if (stringResultLast1 == "hundred" || stringResultLast1 == "Cent" || stringResultLast1 == "Son" || stringResultLast1 == "Sans") {
+          stringResultLast2 = 100;
+        } else if (stringResultLast1 == "one hundred twelve" || stringResultLast1 == "Cent douze" || stringResultLast1 == "Sans douze" || stringResultLast1 == "Sans douce") {
+          stringResultLast2 = 112;
+        } else {
+          stringResultLast2 = valueXstudentNormal;
+        }
+   //// END zero/Zero/ZERO detection -> 0 ////
+    
+    
    document.getElementById("IDvalueTeacher1").value = stringResultLast2;
 
     //// var valueTeacher1 = document.getElementById('IDvalueTeacher1').value;
