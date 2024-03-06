@@ -1,20 +1,23 @@
 // ++++++++++++++++++++++++++++++ SPEECH TO NUMBER ++++++++++++++++++++++++++++++++++ //
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
-var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
-var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
-var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
+const SpeechRecognitionEvent = window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
 
-var numbers = [ '0', '1' , '2' , '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '45', '46', '47', '48'];
+
+var numbers = Array(10000).fill().map((x,i)=>i);
 var grammar = '#JSGF V1.0; grammar numbers; public <numbers.digits> = ' + numbers.join(' | ') + ' ;'
 
 var recognition = new SpeechRecognition();
 var speechRecognitionList = new SpeechGrammarList();
+
 speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
-// recognition.continuous = false;
+
+///recognition.continuous = false;
 //// SEE AT LINE 276
-//// recognition.lang = 'en-US';
-//// recognition.lang = 'fr-FR';
+//recognition.lang = 'en-US';
+////recognition.lang = 'fr-FR';
 //// recognize.lang = "en-GB";
 
 recognition.interimResults = false;
@@ -24,11 +27,11 @@ var diagnostic = document.querySelector('.output');
 var bg = document.querySelector('html');
 var hints = document.querySelector('.hints');
 
-var colorHTML= '';
+/** var colorHTML= '';
 numbers.forEach(function(v, i, a){
   console.log(v, i);
   colorHTML += '<span style="background-color:' + v + ';"> ' + v + ' </span>';
-});
+}); **/
 
 
 function recognitionStart() {
