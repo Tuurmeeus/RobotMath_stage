@@ -79,8 +79,6 @@ recognition.onresult = (event) => {
 
     //Pastes the X value into the formula
     document.getElementById('IDValueX').value = valueXStudent;
-
-
 }
 
 //Math functions
@@ -93,7 +91,6 @@ function calculateResult() {
     mathResult.innerHTML = eval(valueX + operator.value + valueY);
     console.log(eval(valueX + operator.value + valueY));
 }
-
 
 //Text-to-speech
 function textToSpeech() {
@@ -133,11 +130,10 @@ function textToSpeech() {
     ));
 }
 
-
 //Get all available voices for text-to-speech
 let voices = [];
 
-//Functions for fetching all available voices from the current device
+//Fetching all available voices from the current device
 function getVoices() {
     return new Promise((resolve) => {
         setTimeout(() => {
@@ -147,6 +143,7 @@ function getVoices() {
     });
 }
 
+//Adding available voices as options in the drop-down menu
 async function fillVoicesList() {
     const result = await getVoices();
 
